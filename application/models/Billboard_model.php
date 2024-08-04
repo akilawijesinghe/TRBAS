@@ -37,6 +37,7 @@ class Billboard_model extends CI_Model
         $this->db->from('tbl_billboards');
         $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'left');
         $this->db->where('tbl_billboards.deleted_at', NULL);
+        $this->db->where('tbl_billboards.active', 1);
         $query = $this->db->get();
         return $query->result_array();
     }
