@@ -1,5 +1,9 @@
+// initiate datatable
+$(document).ready(function () {
+	$(".ams-data-table").DataTable();
+});
+
 function display_error(index, val) {
-	// can I add span tag to the error message under the input field?
 	var inputField = $("#" + index);
 	var errorSpan = inputField.next(".error-message");
 	// Check if the error span already exists, if not, create it
@@ -9,6 +13,5 @@ function display_error(index, val) {
 		);
 		errorSpan = inputField.next(".error-message");
 	}
-
 	errorSpan.text(val).show();
 }
