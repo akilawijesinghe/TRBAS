@@ -62,96 +62,24 @@
 				<h3 class="section-subheading text-muted">Range of billboards</h3>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<!-- billboard item 1-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal1">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+				<?php foreach ($billboards as $billboard) { ?>
+					<div class="col-lg-4 col-sm-6 mb-4 billboard_card">
+						<!-- billboard item 1-->
+						<div class="billboard-item">
+							<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal1">
+								<div class="billboard-hover">
+									<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+								</div>
+								<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/1.jpg" alt="..." />
+							</a>
+							<div class="billboard-caption">
+								<div class="billboard-caption-heading"><?php echo $billboard['location']; ?></div>
+								<div class="billboard-caption-subheading text-muted">Size : <?php echo $billboard['size']; ?></div>
+								<div class="billboard-caption-subheading text-muted">Type : <?php echo $billboard['type']; ?></div>
 							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/1.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Threads</div>
-							<div class="billboard-caption-subheading text-muted">Illustration</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<!-- billboard item 2-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal2">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/2.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Explore</div>
-							<div class="billboard-caption-subheading text-muted">Graphic Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<!-- billboard item 3-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal3">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/3.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Finish</div>
-							<div class="billboard-caption-subheading text-muted">Identity</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-					<!-- billboard item 4-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal4">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/4.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Lines</div>
-							<div class="billboard-caption-subheading text-muted">Branding</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-					<!-- billboard item 5-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal5">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/5.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Southwest</div>
-							<div class="billboard-caption-subheading text-muted">Website Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6">
-					<!-- billboard item 6-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal6">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/6.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Window</div>
-							<div class="billboard-caption-subheading text-muted">Photography</div>
-						</div>
-					</div>
-				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</section>

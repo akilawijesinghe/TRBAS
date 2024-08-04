@@ -3,13 +3,15 @@
         <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addBillboardModal">Add Billboard</button>
     </div>
     <div class="col-md-12">
-        <table class="table table-bordered" id="billboardTable">
+        <table class="table table-bordered ams-data-table" id="billboardTable">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Location</th>
                     <th>Size</th>
-                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Mac Address</th>
+                    <th>Active</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -19,10 +21,22 @@
                         <td><?php echo $billboard['id']; ?></td>
                         <td><?php echo $billboard['location']; ?></td>
                         <td><?php echo $billboard['size']; ?></td>
-                        <td><?php echo $billboard['price']; ?></td>
+                        <td><?php echo $billboard['type']; ?></td>
+                        <td><?php echo $billboard['mac_address']; ?></td>
+                        <?php
+
+                        if ($billboard['active'] == 1) {
+                            $active = 'Yes';
+                        } else {
+                            $active = 'No';
+                        }
+                        ?>
+                        <td><span class="badge bg-<?php echo $active == 'Yes' ? 'success' : 'danger'; ?>"><?php echo $active; ?></span></td>
                         <td>
-                            <button class="btn btn-danger deleteBillboard" data-id="<?php echo $billboard['id']; ?>">Delete</button>
+                            <button class="btn btn-danger deleteBillboard" data-id="<?php echo $billboard['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteBillboardModal">Delete</button >
+                            <button class="btn btn-primary editBillboard" data-id="<?php echo $billboard['id']; ?>" data-location_id="<?php echo $billboard['location_id']; ?>" data-size="<?php echo $billboard['size']; ?>" data-type="<?php echo $billboard['type']; ?>" data-mac_address="<?php echo $billboard['mac_address']; ?>" data-active="<?php echo $billboard['active']; ?>" data-bs-toggle="modal" data-bs-target="#addBillboardModal">Edit</button>
                         </td>
+                    </tr>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -37,13 +51,17 @@
                 <h4 class="modal-title">Add Billboard</h4>
                 <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
             </div>
-            <form id="addBillboardForm">
-
-                <div class="modal-body text-center">
+            <form id="billboard_form">
+                <div class="modal-body">
                     <div class="form-group row">
                         <label for="location" class="col-sm-2 col-form-label">Location</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="location" name="location" placeholder="Location">
+                            <select class="form-select" id="location_id" name="location_id">
+                                <option value="">Select Location</option>
+                                <?php foreach ($locations as $location) : ?>
+                                    <option value="<?php echo $location['id']; ?>"><?php echo $location['location_name']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -53,52 +71,60 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="price" class="col-sm-2 col-form-label">Price</label>
+                        <label for="type" class="col-sm-2 col-form-label">Type</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+                            <select class="form-select" id="type" name="type">
+                                <option value="LED">LED</option>
+                                <option value="Digital">Digital</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="mac_address" class="col-sm-2 col-form-label">Mac Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="mac_address" name="mac_address" placeholder="Mac Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="active" class="col-sm-2 col-form-label">Active</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="active" name="active">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="save_billboard">Save changes</button>
                 </div>
             </form>
 
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#billboardTable').DataTable();
 
-        $('#addBillboardForm').submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: '<?php echo base_url(); ?>index.php/billboard/add',
-                type: 'POST',
-                data: $(this).serialize(),
-                success: function(response) {
-                    console.log(response);
-                    $('#addBillboardModal').modal('hide');
-                    location.reload();
-                }
-            });
-        });
+<!-- location delete modal  -->
+<div class="modal" id="deleteBillboardModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Billboard</h4>
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+            </div>
+            <form id="delete_location_form">
+                <div class="modal-body text-center">
+                    <h4>Are you sure you want to delete this billboard?</h4>
+                    <input type="hidden" name="delete_billboard_id" id="delete_billboard_id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="delete_billboard">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-        $('.deleteBillboard').click(function() {
-            var id = $(this).data('id');
-            $.ajax({
-                url: '<?php echo base_url(); ?>index.php/billboard/delete',
-                type: 'POST',
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    console.log(response);
-                    location.reload();
-                }
-            });
-        });
-    });
-</script>
+<script src="<?php echo base_url(); ?>assets/js/billboard.js"></script>
