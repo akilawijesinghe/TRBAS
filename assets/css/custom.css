@@ -1,3 +1,9 @@
 .main-panel .page-header {
 	margin-bottom: 0!important;
 }
+.billboard-item{
+	height: 100%!important;
+}
+.billboard-caption{
+	height: 100%!important;
+}

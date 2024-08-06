@@ -29,7 +29,7 @@
 
 					if ($this->session->userdata('user_id')) {
 					?>
-						<li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
+						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/<?php echo $this->session->userdata('user_role'); ?>">Dashboard</a></li>
 
 						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/login/logout">Logout</a></li>
 
@@ -62,96 +62,19 @@
 				<h3 class="section-subheading text-muted">Range of billboards</h3>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<!-- billboard item 1-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal1">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+				<?php foreach ($billboards as $billboard) { ?>
+					<div class="col-lg-4 col-sm-6 mb-4 billboard_c">
+						<div class="billboard-item">
+							<div class="billboard-caption">
+								<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal1">
+									<div class="billboard-caption-heading"><?php echo $billboard['location']; ?></div>
+									<div class="billboard-caption-subheading text-muted">Size : <?php echo $billboard['size']; ?></div>
+									<div class="billboard-caption-subheading text-muted">Type : <?php echo $billboard['type']; ?></div>
+								</a>
 							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/1.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Threads</div>
-							<div class="billboard-caption-subheading text-muted">Illustration</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<!-- billboard item 2-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal2">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/2.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Explore</div>
-							<div class="billboard-caption-subheading text-muted">Graphic Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<!-- billboard item 3-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal3">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/3.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Finish</div>
-							<div class="billboard-caption-subheading text-muted">Identity</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-					<!-- billboard item 4-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal4">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/4.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Lines</div>
-							<div class="billboard-caption-subheading text-muted">Branding</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-					<!-- billboard item 5-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal5">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/5.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Southwest</div>
-							<div class="billboard-caption-subheading text-muted">Website Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6">
-					<!-- billboard item 6-->
-					<div class="billboard-item">
-						<a class="billboard-link" data-bs-toggle="modal" href="#billboardModal6">
-							<div class="billboard-hover">
-								<div class="billboard-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-							</div>
-							<img class="img-fluid" src="<?php echo base_url(); ?>assets/img/billboard/6.jpg" alt="..." />
-						</a>
-						<div class="billboard-caption">
-							<div class="billboard-caption-heading">Window</div>
-							<div class="billboard-caption-subheading text-muted">Photography</div>
-						</div>
-					</div>
-				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</section>
@@ -177,215 +100,6 @@
 	</footer>
 	<!-- billboard Modals-->
 	<!-- billboard item 1 modal popup-->
-	<div class="billboard-modal modal fade" id="billboardModal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="close-modal" data-bs-dismiss="modal"><img src="<?php echo base_url(); ?>assets/img/close-icon.svg" alt="Close modal" /></div>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="modal-body">
-								<!-- Project details-->
-								<h2 class="text-uppercase">Project Name</h2>
-								<p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-								<img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/img/billboard/1.jpg" alt="..." />
-								<p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-								<ul class="list-inline">
-									<li>
-										<strong>Client:</strong>
-										Threads
-									</li>
-									<li>
-										<strong>Category:</strong>
-										Illustration
-									</li>
-								</ul>
-								<button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-									<i class="fas fa-xmark me-1"></i>
-									Close Project
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- billboard item 2 modal popup-->
-	<div class="billboard-modal modal fade" id="billboardModal2" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="close-modal" data-bs-dismiss="modal"><img src="<?php echo base_url(); ?>assets/img/close-icon.svg" alt="Close modal" /></div>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="modal-body">
-								<!-- Project details-->
-								<h2 class="text-uppercase">Project Name</h2>
-								<p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-								<img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/img/billboard/2.jpg" alt="..." />
-								<p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-								<ul class="list-inline">
-									<li>
-										<strong>Client:</strong>
-										Explore
-									</li>
-									<li>
-										<strong>Category:</strong>
-										Graphic Design
-									</li>
-								</ul>
-								<button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-									<i class="fas fa-xmark me-1"></i>
-									Close Project
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- billboard item 3 modal popup-->
-	<div class="billboard-modal modal fade" id="billboardModal3" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="close-modal" data-bs-dismiss="modal"><img src="<?php echo base_url(); ?>assets/img/close-icon.svg" alt="Close modal" /></div>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="modal-body">
-								<!-- Project details-->
-								<h2 class="text-uppercase">Project Name</h2>
-								<p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-								<img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/img/billboard/3.jpg" alt="..." />
-								<p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-								<ul class="list-inline">
-									<li>
-										<strong>Client:</strong>
-										Finish
-									</li>
-									<li>
-										<strong>Category:</strong>
-										Identity
-									</li>
-								</ul>
-								<button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-									<i class="fas fa-xmark me-1"></i>
-									Close Project
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- billboard item 4 modal popup-->
-	<div class="billboard-modal modal fade" id="billboardModal4" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="close-modal" data-bs-dismiss="modal"><img src="<?php echo base_url(); ?>assets/img/close-icon.svg" alt="Close modal" /></div>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="modal-body">
-								<!-- Project details-->
-								<h2 class="text-uppercase">Project Name</h2>
-								<p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-								<img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/img/billboard/4.jpg" alt="..." />
-								<p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-								<ul class="list-inline">
-									<li>
-										<strong>Client:</strong>
-										Lines
-									</li>
-									<li>
-										<strong>Category:</strong>
-										Branding
-									</li>
-								</ul>
-								<button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-									<i class="fas fa-xmark me-1"></i>
-									Close Project
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- billboard item 5 modal popup-->
-	<div class="billboard-modal modal fade" id="billboardModal5" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="close-modal" data-bs-dismiss="modal"><img src="<?php echo base_url(); ?>assets/img/close-icon.svg" alt="Close modal" /></div>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="modal-body">
-								<!-- Project details-->
-								<h2 class="text-uppercase">Project Name</h2>
-								<p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-								<img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/img/billboard/5.jpg" alt="..." />
-								<p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-								<ul class="list-inline">
-									<li>
-										<strong>Client:</strong>
-										Southwest
-									</li>
-									<li>
-										<strong>Category:</strong>
-										Website Design
-									</li>
-								</ul>
-								<button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-									<i class="fas fa-xmark me-1"></i>
-									Close Project
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- billboard item 6 modal popup-->
-	<div class="billboard-modal modal fade" id="billboardModal6" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="close-modal" data-bs-dismiss="modal"><img src="<?php echo base_url(); ?>assets/img/close-icon.svg" alt="Close modal" /></div>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="modal-body">
-								<!-- Project details-->
-								<h2 class="text-uppercase">Project Name</h2>
-								<p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-								<img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/img/billboard/6.jpg" alt="..." />
-								<p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-								<ul class="list-inline">
-									<li>
-										<strong>Client:</strong>
-										Window
-									</li>
-									<li>
-										<strong>Category:</strong>
-										Photography
-									</li>
-								</ul>
-								<button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-									<i class="fas fa-xmark me-1"></i>
-									Close Project
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/website.js"></script>
 	<!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->

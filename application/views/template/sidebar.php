@@ -44,6 +44,12 @@ $uri = $this->uri->segment(1);
                         <p>Billboards</p>
                     </a>
                 </li>
+                <li class="nav-item <?php if($uri == 'location') echo 'active';?>">
+                    <a href="<?php echo base_url(); ?>index.php/location" class="nav-link">
+                        <i class="fas fa-file"></i>
+                        <p>Locations</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

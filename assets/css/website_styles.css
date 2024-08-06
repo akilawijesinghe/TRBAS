@@ -246,8 +246,9 @@ sup {
 }
 
 a {
-  color: var(--bs-link-color);
-  text-decoration: underline;
+  color: #040404;
+    text-decoration: none;
+
 }
 a:hover {
   color: var(--bs-link-hover-color);
@@ -10989,6 +10990,7 @@ header.masthead .masthead-heading {
   max-width: 26rem;
   margin-left: auto;
   margin-right: auto;
+  height: 100%!important;
 }
 #billboard .billboard-item .billboard-link {
   position: relative;
@@ -11017,6 +11019,7 @@ header.masthead .masthead-heading {
   padding: 1.5rem;
   text-align: center;
   background-color: #fff;
+  height: 100%; 
 }
 #billboard .billboard-item .billboard-caption .billboard-caption-heading {
   font-size: 1.5rem;

@@ -1,6 +1,5 @@
 <?php
 
-
 class MY_Controller extends CI_Controller
 {
     public function __construct()
@@ -36,5 +35,28 @@ class MY_Controller extends CI_Controller
         if ($this->session->userdata('user_role') != 'customer') {
             show_error('You are not authorized to access this page', 403);
         }
+    }
+
+    protected function escape_post($post)
+    {
+        $data = [];
+        foreach ($post as $key => $value) {
+            $data[$key] = $this->input->post($key);
+        }
+        return $data;
+    }
+
+    protected function insert_row($table, $data)
+    {
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['created_by'] = $this->session->userdata('user_id');
+        return $this->db->insert($table, $data);
+    }
+
+    protected function update_row($table, $data, $where)
+    {
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        $data['updated_by'] = $this->session->userdata('user_id');
+        return $this->db->update($table, $data, $where);
     }
 }
