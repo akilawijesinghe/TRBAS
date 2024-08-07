@@ -1,26 +1,25 @@
 $(document).ready(function () {
-	// save_billboard button click and form submit
-	$("#save_location").click(function () {
+	// save_customer button click and form submit
+	$("#save_customer").click(function () {
 		// remove all error messages
 		$(".error-message").remove();
 		// get the form data
-		var formData = $("#location_form").serializeArray();
-		var location_id = $("#addLocationModal").data("id");
+		var formData = $("#customer_form").serializeArray();
+		customer_id = $("#addCustomerModal").data("id");
 
-		if (location_id) {
-			formData.push({ name: "id", value: location_id });
+		if (customer_id) {
+			formData.push({ name: "id", value: customer_id });
 		}
-
 		// submit the form
 		$.ajax({
-			url: base_url + "location/save_location",
+			url: base_url + "customer/save_customer",
 			type: "POST",
 			dataType: "json",
 			data: formData,
 		})
 			.done(function (res) {
 				if (res.status == "success") {
-					$("#addLocationModal").modal("hide");
+					$("#addCustomerModal").modal("hide");
 					var content = {};
 
 					content.message = res.message;
@@ -46,40 +45,43 @@ $(document).ready(function () {
 			});
 	});
 
-	$("#addLocationModal").on("show.bs.modal", function (e) {
-		/// clear error messages
+	$("#addCustomerModal").on("show.bs.modal", function (e) {
+		// clear error messages
 		$(".error-message").remove();
+		// get all data attributes into an array
+		$("#customer_form")[0].reset();
+		var data = $(e.relatedTarget).data();
+		// remove all data attributes from the modal
+		$("#addCustomerModal").removeData();
+		// add all data attributes to the modal
+		$("#addCustomerModal").data(data);
 
-		$("#addLocationModal").removeData("id");
 		if (e.relatedTarget) {
-			var location_name = $(e.relatedTarget).data("name");
-			$("#location_name").val(location_name);
-			var location_id = $(e.relatedTarget).data("id");
-			$("#addLocationModal").data("id", location_id);
-		} else {
-			$("#location_name").val("");
+			$.each(data, function (index, val) {
+				$("#" + index).val(val);
+			});
 		}
 	});
 
-	$("#deleteLocationModal").on("show.bs.modal", function (e) {
-		$("#delete_location_id").val("");
-		var location_id = $(e.relatedTarget).data("id");
-		$("#delete_location_id").val(location_id);
+	$("#deleteCustomerModal").on("show.bs.modal", function (e) {
+		$("#delete_customer_id").val("");
+		var customer_id = $(e.relatedTarget).data("id");
+		$("#delete_customer_id").val(customer_id);
 	});
 
-	// delete_location button click
-	$("#delete_location").click(function () {
-		var location_id = $("#delete_location_id").val();
-		// submit the form
+	// delete_customer button click
+	$("#delete_customer").click(function () {
+		var customer_id = $("#delete_customer_id").val();
+
 		$.ajax({
-			url: base_url + "location/delete_location",
+			url: base_url + "customer/delete_customer",
 			type: "POST",
 			dataType: "json",
-			data: { id: location_id },
+			data: { id: customer_id },
 		})
 			.done(function (res) {
 				if (res.status == "success") {
-					$("#deleteLocationModal").modal("hide");
+					$("#deleteCustomerModal").modal("hide");
 					var content = {};
 
 					content.message = res.message;
@@ -91,7 +93,6 @@ $(document).ready(function () {
 						time: 1000,
 						delay: 0,
 					});
-
 					// reload the page after 2 second
 					setTimeout(function () {
 						location.reload();

@@ -3,9 +3,9 @@
 // check the session user role
 $role = $this->session->userdata('user_role');
 if ($role == 'admin') {
-    $dashboard_url = 'index.php/admin';
+    $dashboard_url = 'index.php/admin_dashboard';
 } else {
-    $dashboard_url = 'index.php/customer';
+    $dashboard_url = 'index.php/customer_dashboard';
 }
 
 $uri = $this->uri->segment(1);
@@ -50,10 +50,17 @@ $uri = $this->uri->segment(1);
                         <p>Locations</p>
                     </a>
                 </li>
+                <!-- Customer -->
+                <li class="nav-item <?php if($uri == 'customer') echo 'active';?>">
+                    <a href="<?php echo base_url(); ?>index.php/customer" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <p>Customers</p>
+                    </a>
+                </li>
                 <!-- Users -->
                 <li class="nav-item <?php if($uri == 'user') echo 'active';?>">
                     <a href="<?php echo base_url(); ?>index.php/user" class="nav-link">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-user-shield"></i>
                         <p>Users</p>
                     </a>
                 </li>
