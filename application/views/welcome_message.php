@@ -29,7 +29,7 @@
 
 					if ($this->session->userdata('user_id')) {
 					?>
-						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/<?php echo $this->session->userdata('user_role'); ?>">Dashboard</a></li>
+						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/<?php echo $this->session->userdata('user_role'); ?>_dashboard">Dashboard</a></li>
 
 						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/login/logout">Logout</a></li>
 

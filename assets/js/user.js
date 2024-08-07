@@ -46,6 +46,8 @@ $(document).ready(function () {
 	});
 
 	$("#addUserModal").on("show.bs.modal", function (e) {
+		// clear error messages
+		$(".error-message").remove();
 		// get all data attributes into an array
 		$("#user_form")[0].reset();
 		var data = $(e.relatedTarget).data();
