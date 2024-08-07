@@ -64,7 +64,8 @@ class Login extends CI_Controller
                 $this->session->set_userdata('user_email', $user['email']);
                 $this->session->set_userdata('user_role', $user['role']);
                 http_response_code(200);
-                echo json_encode(array('status' => 'success', 'message' => 'Login successful', 'role' => $user['role']));
+                $url = $user['role']."_dashboard";
+                echo json_encode(array('status' => 'success', 'message' => 'Login successful', 'role' => $url));
             } else {
                 http_response_code(422);
                 $error['credentials_error'] = 'Check your credentials';

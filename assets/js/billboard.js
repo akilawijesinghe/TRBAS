@@ -46,6 +46,8 @@ $(document).ready(function () {
 	});
 
 	$("#addBillboardModal").on("show.bs.modal", function (e) {
+		// clear error messages
+		$(".error-message").remove();
 		// get all data attributes into an array
 		$("#billboard_form")[0].reset();
 		var data = $(e.relatedTarget).data();
