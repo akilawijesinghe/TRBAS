@@ -14,6 +14,8 @@ class Login_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_users');
         $this->db->where('email', $email);
+        $this->db->where('deleted_at', NULL);
+        $this->db->where('active', 1);
         $query = $this->db->get();
         return $query->row_array();
     }
