@@ -12,7 +12,7 @@ $(document).ready(function () {
 		}
 		// submit the form
 		$.ajax({
-			url: base_url + "pricepackage/save_pricepackage",
+			url: base_url + "price_package/save_pricepackage",
 			type: "POST",
 			dataType: "json",
 			data: formData,
@@ -73,7 +73,7 @@ $(document).ready(function () {
 		var pricepackage_id = $("#delete_pricepackage_id").val();
 
 		$.ajax({
-			url: base_url + "pricepackage/delete_pricepackage",
+			url: base_url + "price_package/delete_pricepackage",
 			type: "POST",
 			dataType: "json",
 			data: { id: pricepackage_id },
