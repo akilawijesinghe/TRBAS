@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addCustomerModal">Add customer</button>
+        <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addCustomerModal">Add Customer</button>
     </div>
     <div class="col-md-12">
         <table class="table table-bordered ams-data-table" id="customerTable">
