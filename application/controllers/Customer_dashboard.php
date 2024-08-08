@@ -17,7 +17,7 @@ class Customer_dashboard extends CI_Controller
         // Load data for customer dashboard
         $data = array();
         $data['title'] = 'Customer Dashboard';
-        $this->load->view('customer/dashboard', $data);
+        $this->load->view('template/customer/dashboard', $data);
     }
 
 }

@@ -57,6 +57,13 @@ $uri = $this->uri->segment(1);
                         <p>Customers</p>
                     </a>
                 </li>
+                <!-- Price Packages -->
+                <li class="nav-item <?php if($uri == 'price_package') echo 'active';?>">
+                    <a href="<?php echo base_url(); ?>index.php/price_package" class="nav-link">
+                        <i class="fas fa-dollar-sign"></i>
+                        <p>Price Packages</p>
+                    </a>
+                </li>
                 <!-- Users -->
                 <li class="nav-item <?php if($uri == 'user') echo 'active';?>">
                     <a href="<?php echo base_url(); ?>index.php/user" class="nav-link">

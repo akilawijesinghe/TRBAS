@@ -25,9 +25,7 @@ class Customer extends MY_Controller
         $data = array();
         $data['title'] = 'Customer';
         $data['customers'] = $this->Customer_model->get_customers();
-        // print_r($data['customers']);
-        // die;
-        $this->_render_view('customer_/main', $data);
+        $this->_render_view('customer/main', $data);
     }
 
     public function save_customer()
