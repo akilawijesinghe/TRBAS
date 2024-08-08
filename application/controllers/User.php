@@ -80,6 +80,7 @@ class User extends MY_Controller
         }
     }
 
+    // delete user
     public function delete_user()
     {
         $id = $this->input->post('id');
@@ -91,6 +92,7 @@ class User extends MY_Controller
         }
     }
 
+    // get all users
     public function get_users()
     {
         $users = $this->User_model->get_users();
