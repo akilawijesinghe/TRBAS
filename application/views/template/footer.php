@@ -48,6 +48,8 @@
 	<!-- Kaiadmin DEMO methods, don't include it in your project! -->
 	<script src="<?php echo base_url(); ?>assets/js/setting-demo2.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/custom/common.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 </body>
 </html>

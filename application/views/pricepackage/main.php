@@ -8,8 +8,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Package Name</th>
-                    <th>Duration</th>
-                    <th>Price</th>
+                    <th>Duration (days)</th>
+                    <th>Price per day</th>
                     <th>Discount</th>
                     <th>Active</th>
                     <th>Actions</th>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="modal" id="addpricepackageModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Price Package</h4>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="mac_address" class="col-sm-2 col-form-label">Price</label>
+                        <label for="mac_address" class="col-sm-2 col-form-label">Price per day</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="price" name="price" placeholder="Price">
                         </div>

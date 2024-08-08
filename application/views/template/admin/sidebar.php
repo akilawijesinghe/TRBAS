@@ -50,6 +50,13 @@ $uri = $this->uri->segment(1);
                         <p>Locations</p>
                     </a>
                 </li>
+                <!-- Bookings -->
+                <li class="nav-item <?php if($uri == 'booking') echo 'active';?>">
+                    <a href="<?php echo base_url(); ?>index.php/booking" class="nav-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>Bookings</p>
+                    </a>
+                </li>
                 <!-- Customer -->
                 <li class="nav-item <?php if($uri == 'customer') echo 'active';?>">
                     <a href="<?php echo base_url(); ?>index.php/customer" class="nav-link">
