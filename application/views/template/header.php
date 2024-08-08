@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/plugins.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/kaiadmin.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css">
@@ -49,7 +50,7 @@
         <?php
         // get user role from session
         $role = $this->session->userdata('user_role');
-        $this->load->view("template/".$role . '/sidebar.php');
+        $this->load->view("template/" . $role . '/sidebar.php');
 
         ?>
 
