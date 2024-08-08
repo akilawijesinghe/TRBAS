@@ -17,6 +17,6 @@ class Admin_dashboard extends MY_Controller
         // Load data for admin dashboard
         $data = array();
         $data['title'] = 'Admin Dashboard';
-        $this->_render_view('admin/dashboard', $data);
+        $this->_render_view('template/admin/dashboard', $data);
     }
 }

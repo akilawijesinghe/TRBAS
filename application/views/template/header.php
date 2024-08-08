@@ -49,7 +49,7 @@
         <?php
         // get user role from session
         $role = $this->session->userdata('user_role');
-        $this->load->view($role . '/sidebar.php');
+        $this->load->view("template/".$role . '/sidebar.php');
 
         ?>
 
