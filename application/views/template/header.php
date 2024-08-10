@@ -6,6 +6,7 @@
     <title>TRBAS</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" href="<?php echo base_url(); ?>assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css" />
     <script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.js"></script>
 
     <!-- Fonts and icons -->

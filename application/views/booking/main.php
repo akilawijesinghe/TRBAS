@@ -10,8 +10,7 @@
                     <th>Customer</th>
                     <th>Billboard</th>
                     <th>Price Package</th>
-                    <th>From</th>
-                    <th>To</th>
+                    <th>Date Raneg</th>
                     <th>Active</th>
                     <th>Actions</th>
                 </tr>
@@ -23,8 +22,23 @@
                         <td><?php echo $booking['customer_name']; ?></td>
                         <td><?php echo $booking['billboard_name']; ?></td>
                         <td><?php echo $booking['price_package_name']; ?></td>
-                        <td><?php echo $booking['from_date']; ?></td>
-                        <td><?php echo $booking['to_date']; ?></td>
+                        <td><?php
+
+                            // check the expiration date and add a badge
+                            $from_date = strtotime($booking['from_date']);
+                            $to_date = strtotime($booking['to_date']);
+                            $current_date = strtotime(date('Y-m-d'));
+                            if ($current_date >= $from_date && $current_date <= $to_date) {
+                                $badge = 'success';
+                            } else {
+                                $badge = 'danger';
+                            }
+
+                            echo $booking['from_date'] . ' to ' . $booking['to_date'];
+                            ?>
+                            <br><span class="badge bg-<?php echo $badge; ?>"><?php echo $badge == 'success' ? 'Ongoing' : 'Expired'; ?></span>
+
+                        </td>
                         <td>
                             <?php
                             if ($booking['active'] == 1) {
@@ -129,7 +143,7 @@
     </div>
 </div>
 
-<!-- location delete modal  -->
+<!-- booking delete modal  -->
 <div class="modal" id="deleteBookingModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -137,7 +151,7 @@
                 <h4 class="modal-title">Delete Booking</h4>
                 <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
             </div>
-            <form id="delete_location_form">
+            <form id="delete_booking_form">
                 <div class="modal-body text-center">
                     <h4>Are you sure you want to delete this booking?</h4>
                     <input type="hidden" name="delete_booking_id" id="delete_booking_id">
