@@ -6,10 +6,6 @@ class Advertisement extends MY_Controller
     {
         parent::__construct();
         $this->load->helper('url');
-        // Check if the user is logged in and is an admin
-        if ($this->session->userdata('user_role') != 'admin') {
-            redirect('login'); // Redirect to login if not an admin
-        }
         // load advertisement model
         $this->load->model('Advertisement_model');
         // load booking model

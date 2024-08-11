@@ -42,14 +42,14 @@ $uri = $this->uri->segment(1);
                 <li class="nav-item <?php if($uri == 'booking') echo 'active';?>">
                     <a href="<?php echo base_url(); ?>index.php/booking" class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
-                        <p>Bookings</p>
+                        <p>My Bookings</p>
                     </a>
                 </li>
                 <!-- Advertisements -->
                 <li class="nav-item <?php if($uri == 'advertisement') echo 'active';?>">
                     <a href="<?php echo base_url(); ?>index.php/advertisement" class="nav-link">
                         <i class="fab fa-adversal"></i>
-                        <p>Advertisements</p>
+                        <p>My Ads</p>
                     </a>
                 </li>
                 <!-- Reports -->
