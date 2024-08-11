@@ -89,7 +89,7 @@ class Advertisement extends MY_Controller
                 $this->_render_view('advertisement/view_video', $data);
             } else {
                 $booking = $this->Booking_model->get_booking_by_id($booking_id);
-                if ($booking['uid'] == $this->session->userdata('user_id')) {
+                if ($booking && $booking['uid'] == $this->session->userdata('user_id')) {
                     $this->_render_view('advertisement/view_video', $data);
                 } else {
                     $data['error'] = 'You are not authorized to view this video';
