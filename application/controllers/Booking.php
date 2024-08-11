@@ -16,10 +16,7 @@ class Booking extends MY_Controller
         $this->load->model('PricePackage_model');
         // check login
         $this->check_login();
-        // Check if the user is logged in and is an admin
-        if ($this->session->userdata('user_role') != 'admin') {
-            redirect('login'); // Redirect to login if not an admin
-        }
+
     }
 
     public function index()
