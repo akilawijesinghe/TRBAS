@@ -6,10 +6,6 @@ class Advertisement extends MY_Controller
     {
         parent::__construct();
         $this->load->helper('url');
-        // Check if the user is logged in and is an admin
-        if ($this->session->userdata('user_role') != 'admin') {
-            redirect('login'); // Redirect to login if not an admin
-        }
         // load advertisement model
         $this->load->model('Advertisement_model');
         // load booking model
@@ -93,7 +89,7 @@ class Advertisement extends MY_Controller
                 $this->_render_view('advertisement/view_video', $data);
             } else {
                 $booking = $this->Booking_model->get_booking_by_id($booking_id);
-                if ($booking['uid'] == $this->session->userdata('user_id')) {
+                if ($booking && $booking['uid'] == $this->session->userdata('user_id')) {
                     $this->_render_view('advertisement/view_video', $data);
                 } else {
                     $data['error'] = 'You are not authorized to view this video';
