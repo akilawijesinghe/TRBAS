@@ -46,6 +46,11 @@ class Booking_model extends CI_Model
         $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'inner');
         $this->db->where('tbl_booking.deleted_at', NULL);
         $this->db->where('tbl_booking.active', 1);
+
+        if ($this->session->userdata('user_role') == 'customer') {
+            $this->db->where('tbl_users.id', $this->session->userdata('user_id'));
+        }
+
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -63,6 +68,10 @@ class Booking_model extends CI_Model
         $this->db->where('tbl_booking.deleted_at', NULL);
         $this->db->where('tbl_booking.active', 1);
         $this->db->where('tbl_booking.id', $id);
+        // if user is customer show only his details
+        if ($this->session->userdata('user_role') == 'customer') {
+            $this->db->where('tbl_users.id', $this->session->userdata('user_id'));
+        }
         $query = $this->db->get();
         return $query->row_array();
     }
