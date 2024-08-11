@@ -46,6 +46,10 @@ class Advertisement_model extends CI_Model
         $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'inner');
         $this->db->where('tbl_booking.deleted_at', NULL);
         $this->db->where('tbl_booking.active', 1);
+        // check the user customer and only show his bookings
+        if ($this->session->userdata('user_role') == 'customer') {
+            $this->db->where('tbl_users.id', $this->session->userdata('user_id'));
+        }
         $query = $this->db->get();
         return $query->result_array();
     }
