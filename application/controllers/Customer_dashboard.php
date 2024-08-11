@@ -1,6 +1,6 @@
 <?php
 
-class Customer_dashboard extends CI_Controller
+class Customer_dashboard extends My_Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class Customer_dashboard extends CI_Controller
         // Load data for customer dashboard
         $data = array();
         $data['title'] = 'Customer Dashboard';
-        $this->load->view('template/customer/dashboard', $data);
+        $this->_render_view('template/admin/dashboard', $data);
     }
 
 }

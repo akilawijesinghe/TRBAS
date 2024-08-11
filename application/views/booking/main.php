@@ -86,8 +86,15 @@
                         <div class="col-sm-10">
                             <select class="form-select" id="customer_id" name="customer_id">
                                 <option value="">Select Customer</option>
-                                <?php foreach ($customers as $customer) : ?>
-                                    <option value="<?php echo $customer['customer_id']; ?>"><?php echo $customer['name']; ?></option>
+                                <?php foreach ($customers as $customer) :
+                                    $selected = '';
+                                    if ($this->session->userdata('user_role') == 'customer') {
+                                        if ($customer['id'] == $this->session->userdata('user_id')) {
+                                            $selected = 'selected';
+                                        }
+                                    }
+                                ?>
+                                    <option <?php echo $selected; ?> value="<?php echo $customer['customer_id']; ?>"><?php echo $customer['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
