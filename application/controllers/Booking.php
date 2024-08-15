@@ -84,4 +84,14 @@ class Booking extends MY_Controller
             echo json_encode(array('status' => 'error', 'message' => 'Error deleting booking'));
         }
     }
+
+    // get booking dates by billboard id
+    public function get_booking_dates_of_billboard()
+    {
+        $post_data = $this->escape_post($_POST);
+        $billboard_id = $post_data['billboard_id'];
+        $dates = $this->Booking_model->get_booking_dates_of_billboard($billboard_id);
+        echo json_encode($dates);
+    }
+
 }
