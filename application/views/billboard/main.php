@@ -11,6 +11,7 @@
                     <th>Size</th>
                     <th>Type</th>
                     <th>Mac Address</th>
+                    <th>Min Vehicle Count</th>
                     <th>Active</th>
                     <th>Actions</th>
                 </tr>
@@ -23,6 +24,7 @@
                         <td><?php echo $billboard['size']; ?></td>
                         <td><?php echo $billboard['type']; ?></td>
                         <td><?php echo $billboard['mac_address']; ?></td>
+                        <td><?php echo $billboard['minimum_vehicle_count']; ?></td>
                         <?php
 
                         if ($billboard['active'] == 1) {
@@ -34,7 +36,7 @@
                         <td><span class="badge bg-<?php echo $active == 'Yes' ? 'success' : 'danger'; ?>"><?php echo $active; ?></span></td>
                         <td>
                             <button class="btn btn-danger deleteBillboard" data-id="<?php echo $billboard['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteBillboardModal">Delete</button >
-                            <button class="btn btn-primary editBillboard" data-id="<?php echo $billboard['id']; ?>" data-location_id="<?php echo $billboard['location_id']; ?>" data-size="<?php echo $billboard['size']; ?>" data-type="<?php echo $billboard['type']; ?>" data-mac_address="<?php echo $billboard['mac_address']; ?>" data-active="<?php echo $billboard['active']; ?>" data-bs-toggle="modal" data-bs-target="#addBillboardModal">Edit</button>
+                            <button class="btn btn-primary editBillboard" data-id="<?php echo $billboard['id']; ?>" data-location_id="<?php echo $billboard['location_id']; ?>" data-size="<?php echo $billboard['size']; ?>" data-type="<?php echo $billboard['type']; ?>" data-mac_address="<?php echo $billboard['mac_address']; ?>" data-active="<?php echo $billboard['active']; ?>" data-minimum_vehicle_count="<?php echo $billboard['minimum_vehicle_count']?>" data-bs-toggle="modal" data-bs-target="#addBillboardModal">Edit</button>
                         </td>
                     </tr>
                     </tr>
@@ -83,6 +85,12 @@
                         <label for="mac_address" class="col-sm-2 col-form-label">Mac Address</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="mac_address" name="mac_address" placeholder="Mac Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="minimum_vehicle_count" class="col-sm-2 col-form-label">Minimum Vehicle Count</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="minimum_vehicle_count" name="minimum_vehicle_count" placeholder="Minimum Vehicle Count">
                         </div>
                     </div>
                     <div class="form-group row">
