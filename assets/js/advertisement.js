@@ -96,6 +96,7 @@ function load_advertisements(booking_id) {
 					var tr = $("<tr>");
 					tr.append("<td>" + val.id + "</td>");
 					tr.append("<td>" + val.video_link + "</td>");
+
 					//  action view and delete
 					var action = $(
 						"<td>" +

@@ -75,4 +75,17 @@ class Booking_model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+
+    public function get_booking_dates_of_billboard($billboard_id)
+    {
+        $this->db->select('from_date,to_date');
+        $this->db->from('tbl_booking');
+        $this->db->where('billboard_id', $billboard_id);
+        $this->db->where('deleted_at', NULL);
+        $this->db->where('active', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
 }
