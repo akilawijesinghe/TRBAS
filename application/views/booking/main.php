@@ -50,8 +50,18 @@
                             <span class="badge bg-<?php echo $active == 'Yes' ? 'success' : 'danger'; ?>"><?php echo $active; ?></span>
                         </td>
                         <td>
-                            <button class="btn btn-danger deleteBooking" data-id="<?php echo $booking['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteBookingModal">Delete</button>
-                            <button class="btn btn-primary editBooking" data-id="<?php echo $booking['id']; ?>" data-customer_id="<?php echo $booking['customer_id']; ?>" data-billboard_id="<?php echo $booking['billboard_id']; ?>" data-price_package_id="<?php echo $booking['price_package_id']; ?>" data-from_date="<?php echo $booking['from_date']; ?>" data-to_date="<?php echo $booking['to_date']; ?>" data-bs-toggle="modal" data-bs-target="#addBookingModal">Edit</button>
+                            <?php
+
+                            // if expired booking then disable the edit/delete button
+                            if ($badge == 'danger') {
+                                $disabled = 'disabled data-bs-toggle="tooltip" title="You can not edit expired booking"';
+                            } else {
+                                $disabled = '';
+                            }
+
+                            ?>
+                            <button class="btn btn-danger deleteBooking" data-id="<?php echo $booking['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteBookingModal" <?php echo $disabled; ?>>Delete</button>
+                            <button class="btn btn-primary editBooking" data-id="<?php echo $booking['id']; ?>" data-customer_id="<?php echo $booking['customer_id']; ?>" data-billboard_id="<?php echo $booking['billboard_id']; ?>" data-price_package_id="<?php echo $booking['price_package_id']; ?>" data-from_date="<?php echo $booking['from_date']; ?>" data-to_date="<?php echo $booking['to_date']; ?>" data-bs-toggle="modal" data-bs-target="#addBookingModal" <?php echo $disabled; ?>>Edit</button>
                         </td>
                     </tr>
                     </tr>

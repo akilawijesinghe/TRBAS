@@ -156,6 +156,9 @@ $(document).ready(function () {
 					format: "MM/DD/YYYY", // Format for the input field
 					cancelLabel: "Clear", // Optional: Add a cancel button to clear the selection
 				},
+				setIsInvalidDate: function (date) {
+					return false; // Initially allow all dates
+				},
 			},
 			function (start, end, label) {
 				display_total(start, end, label);
@@ -271,8 +274,53 @@ $(document).ready(function () {
         </div>
     </div>
 </div>
-
 		 
 		 `);
 	}
+
+	// billboard_id change event to get booking dates
+	$("#billboard_id").change(function () {
+		var billboard_id = $(this).val();
+		var dates = get_booking_dates_of_billboard(billboard_id);
+	});
 });
+
+function get_booking_dates_of_billboard(billboard_id) {
+	$.ajax({
+		url: base_url + "booking/get_booking_dates_of_billboard",
+		type: "POST",
+		dataType: "json",
+		data: { billboard_id: billboard_id },
+	})
+		.done(function (res) {
+			disable_dates(res);
+		})
+		.fail(function (data) {
+			$.each(data.responseJSON, function (index, val) {
+				display_error(index, val);
+			});
+		});
+}
+
+ // Function to disable booked dates
+ function disable_dates(dates) {
+    var picker = $("#from_daterange").data("daterangepicker");
+
+    // Update the isInvalidDate function of the existing date range picker instance
+    picker.isInvalidDate = function (date) {
+        var formattedDate = date.format("YYYY-MM-DD");
+        for (var i = 0; i < dates.length; i++) {
+            var fromDate = moment(dates[i].from_date);
+            var toDate = moment(dates[i].to_date);
+
+            // If the date falls within any of the ranges, return true (invalid)
+            if (date.isBetween(fromDate, toDate, null, '[]')) {
+                return true;
+            }
+        }
+        return false; // Otherwise, the date is valid
+    };
+
+    // Manually trigger the picker to re-render with the new invalid dates
+    picker.updateView();
+}
