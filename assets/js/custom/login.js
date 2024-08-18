@@ -24,6 +24,7 @@ $(document).ready(function () {
 			data: { email: email, password: password },
 		})
 			.done(function (res) {
+				console.log(res);
 				window.location.href = base_url + res.role;
 			})
 			.fail(function (data) {
