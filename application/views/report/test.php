@@ -2,12 +2,11 @@
 require_once 'application/libraries/class/Reporter.php';
 $pdf = new Reporter(array('orientation' => 'P', 'unit' => 'mm', 'format' => 'A4','footer' => false));
 $pdf->addPage();
-// print_r($dispensed_drug_info);die;
 
 $pdf->writeTitle("Test Report");
-$pdf->writeSubTitle('Daily Drug Dispensed');
+$pdf->writeSubTitle('Test');
 $pdf->Ln();
-$pdf->MultiCell(0, 4, 'List of drugs dispensed only', 0, 'C');
+$pdf->MultiCell(0, 4, 'Test', 0, 'C');
 
 $dispened_drug_info = array();
 
