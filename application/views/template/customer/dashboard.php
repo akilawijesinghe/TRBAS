@@ -29,12 +29,11 @@
         }
 
     foreach ($ads as $ad) { 
-        //  check the from date and to date of the booking and compare it with the current date and check if the ad is active
         $from_date = strtotime($ad->from_date);
         $to_date = strtotime($ad->to_date);
         $current_date = strtotime(date('Y-m-d'));
         $status = $current_date >= $from_date && $current_date <= $to_date ? 'Ongoing' : 'Expired';
-        // need to change badge color based on the status
+
         if ($status == 'Ongoing') {
             $bdg_color = 'badge-success';
         } else {
