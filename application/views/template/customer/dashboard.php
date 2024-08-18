@@ -46,7 +46,7 @@
         <div class="col-md-3">
         <a href="<?php echo $video_url; ?>" target="_blank">
             <div class="card card-secondary bg-secondary-gradient">
-                <div class="card-body curves-shadow">
+                <div class="card-body bubble-shadow">
                     <h5 class="op-8">Ad ID : <?php echo $ad->ad_id; ?></h5>
                     <div class="pull-right op-8">
                         <h3 class="fw-bold">Total Vehicles : <?php echo $ad->total_vehicles; ?></h3>
