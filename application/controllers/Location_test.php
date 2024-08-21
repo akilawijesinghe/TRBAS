@@ -15,7 +15,6 @@ class Location_test extends MY_Controller
 
     public function index()
     {
-        die('test');
         $this->test_save_location();
         $this->test_get_locations();
         $this->test_delete_location();
