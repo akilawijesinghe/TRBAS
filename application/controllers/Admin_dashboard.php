@@ -18,7 +18,7 @@ class Admin_dashboard extends MY_Controller
         // Load data for admin dashboard
         $data = array();
         $data['title'] = 'Admin Dashboard';
-        $data['billboards'] = $this->Dashboard_model->get_bookings();
+        $data['billboards'] = $this->Dashboard_model->get_billboards_stats();
         $data['customers'] = $this->Dashboard_model->get_customers();
         $this->_render_view('template/admin/dashboard', $data);
     }
