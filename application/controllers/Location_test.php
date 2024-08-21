@@ -19,6 +19,8 @@ class Location_test extends MY_Controller
         $this->update_location();
         $this->test_get_locations();
         $this->test_delete_location();
+
+        echo $this->unit->report();
     }
 
 
@@ -44,7 +46,6 @@ class Location_test extends MY_Controller
         $this->unit->run($result, $expected_result, $test_name);
 
         // Display the test result
-        echo $this->unit->report();
     }
 
     public function update_location()
@@ -72,7 +73,6 @@ class Location_test extends MY_Controller
         $this->unit->run($result, $expected_result, $test_name);
 
         // Display the test result
-        echo $this->unit->report();
     }
 
     public function test_get_locations()
@@ -90,7 +90,6 @@ class Location_test extends MY_Controller
         $this->unit->run($result, $expected_result, $test_name);
 
         // Display the test result
-        echo $this->unit->report();
     }
 
     public function test_delete_location()
@@ -111,6 +110,5 @@ class Location_test extends MY_Controller
         $this->unit->run($result, $expected_result, $test_name);
 
         // Display the test result
-        echo $this->unit->report();
     }
 }

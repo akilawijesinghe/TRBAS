@@ -15,6 +15,7 @@ class Customer_test extends CI_Controller
         $this->test_update_customer();
         $this->test_delete_customer();
         $this->test_get_customers();
+    echo $this->unit->report();
     }
 
     public function test_save_customer()
@@ -38,7 +39,7 @@ class Customer_test extends CI_Controller
         $result = $this->Customer_model->save_customer($data);
 
         // Run the test
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 
     public function test_update_customer()
@@ -64,7 +65,7 @@ class Customer_test extends CI_Controller
         $result = $this->Customer_model->update_customer($data, $customerId);
 
         // Run the test
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 
     public function test_delete_customer()
@@ -79,7 +80,7 @@ class Customer_test extends CI_Controller
         $result = $this->Customer_model->delete_customer($customerId);
 
         // Run the test
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 
     public function test_get_customers()
@@ -92,6 +93,6 @@ class Customer_test extends CI_Controller
         $result = $this->Customer_model->get_customers();
 
         // Run the test
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 }

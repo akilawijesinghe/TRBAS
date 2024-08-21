@@ -15,6 +15,7 @@ class Billboard_test extends MY_Controller
         $this->test_save_billboard();
         $this->update_billboard();
         $this->test_delete_billboard();
+        echo $this->unit->report();
     }
 
     public function get_billboards()
@@ -24,7 +25,7 @@ class Billboard_test extends MY_Controller
 
         $result = $this->Billboard_model->get_billboards();
 
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 
     public function test_save_billboard()
@@ -44,7 +45,7 @@ class Billboard_test extends MY_Controller
 
         $result = $this->Billboard_model->save_billboard($postData);
 
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 
     public function update_billboard()
@@ -66,7 +67,7 @@ class Billboard_test extends MY_Controller
 
         $result = $this->Billboard_model->update_billboard($postData, $id);
 
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 
     public function test_delete_billboard()
@@ -78,6 +79,6 @@ class Billboard_test extends MY_Controller
 
         $result = $this->Billboard_model->delete_billboard($id);
 
-        echo $this->unit->run($result, $expected_result, $test_name);
+        $this->unit->run($result, $expected_result, $test_name);
     }
 }
