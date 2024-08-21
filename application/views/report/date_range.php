@@ -1,4 +1,4 @@
-<form id="date_range_form" action="<?php echo  base_url()."index.php/".$action; ?>" method="post" target="_blank">
+<form id="date_range_form" action="<?php echo  base_url()."/".$action; ?>" method="post" target="_blank">
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">

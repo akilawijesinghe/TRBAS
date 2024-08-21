@@ -22,7 +22,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css" />
     <script>
-        const base_url = '<?php echo base_url(); ?>index.php/';
+        const base_url = '<?php echo base_url(); ?>';
     </script>
 </head>
 
