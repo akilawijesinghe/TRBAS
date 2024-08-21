@@ -29,14 +29,14 @@
 
 					if ($this->session->userdata('user_id')) {
 					?>
-						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/<?php echo $this->session->userdata('user_role'); ?>_dashboard">Dashboard</a></li>
+						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?><?php echo $this->session->userdata('user_role'); ?>_dashboard">Dashboard</a></li>
 
-						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/login/logout">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>login/logout">Logout</a></li>
 
 					<?php
 					} else {
 					?>
-						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/login">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>login">Login</a></li>
 					<?php
 					}
 

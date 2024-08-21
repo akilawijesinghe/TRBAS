@@ -3,9 +3,9 @@
 // check the session user role
 $role = $this->session->userdata('user_role');
 if ($role == 'admin') {
-    $dashboard_url = 'index.php/admin_dashboard';
+    $dashboard_url = 'admin_dashboard';
 } else {
-    $dashboard_url = 'index.php/customer_dashboard';
+    $dashboard_url = 'customer_dashboard';
 }
 
 $uri = $this->uri->segment(1);
@@ -40,21 +40,21 @@ $uri = $this->uri->segment(1);
                 </li>
                 <!-- Bookings -->
                 <li class="nav-item <?php if ($uri == 'booking') echo 'active'; ?>">
-                    <a href="<?php echo base_url(); ?>index.php/booking" class="nav-link">
+                    <a href="<?php echo base_url(); ?>booking" class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
                         <p>My Bookings</p>
                     </a>
                 </li>
                 <!-- Advertisements -->
                 <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
-                    <a href="<?php echo base_url(); ?>index.php/advertisement" class="nav-link">
+                    <a href="<?php echo base_url(); ?>advertisement" class="nav-link">
                         <i class="fab fa-adversal"></i>
                         <p>My Ads</p>
                     </a>
                 </li>
                 <!-- Reports -->
                 <!-- <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
-                    <a href="<?php echo base_url(); ?>index.php/report" class="nav-link">
+                    <a href="<?php echo base_url(); ?>report" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         <p>Reports</p>
                     </a>

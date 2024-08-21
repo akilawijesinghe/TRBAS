@@ -68,12 +68,12 @@
                 <!-- drop zone -->
                 <div class="card-body">
                     <input type="hidden" id="bookingid">
-                    <form action="<?php echo base_url(); ?>index.php/advertisement/upload_video" class="dropzone" id="videoDropzone"></form>
+                    <form action="<?php echo base_url(); ?>advertisement/upload_video" class="dropzone" id="videoDropzone"></form>
 
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.js"></script>
                     <script>
                         Dropzone.options.videoDropzone = {
-                            url: "<?php echo base_url(); ?>index.php/advertisement/upload_video",
+                            url: "<?php echo base_url(); ?>advertisement/upload_video",
                             acceptedFiles: "video/*",
                             maxFiles: 1,
                             autoProcessQueue: false,

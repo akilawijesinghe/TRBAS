@@ -39,7 +39,7 @@
         } else {
             $bdg_color = 'badge-danger';
         }
-        $video_url = base_url() . "index.php/advertisement/view_video/" . $ad->ad_id . "/" . $ad->booking_id;
+        $video_url = base_url() . "/advertisement/view_video/" . $ad->ad_id . "/" . $ad->booking_id;
 
         ?>
         <div class="col-md-3">

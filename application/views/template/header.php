@@ -24,7 +24,7 @@
                     "Font Awesome 5 Brands",
                     "simple-line-icons",
                 ],
-                urls: ["<?php echo base_url(); ?>/assets/css/fonts.min.css"],
+                urls: ["<?php echo base_url(); ?>assets/css/fonts.min.css"],
             },
             active: function() {
                 sessionStorage.fonts = true;
@@ -42,7 +42,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css">
     <script>
-        const base_url = '<?php echo base_url(); ?>index.php/';
+        const base_url = '<?php echo base_url(); ?>';
     </script>
 </head>
 
@@ -119,7 +119,7 @@
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/login/logout">Logout</a>
+                                            <a class="dropdown-item" href="<?php echo base_url(); ?>login/logout">Logout</a>
                                         </li>
                                     </div>
                                 </ul>
