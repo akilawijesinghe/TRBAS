@@ -24,10 +24,12 @@ class Dashboard_model extends CI_Model
         $this->db->from('tbl_customer_details');
         $this->db->join('tbl_booking', 'tbl_booking.customer_id = tbl_customer_details.id', 'left');
         $this->db->join('tbl_advertisements', 'tbl_advertisements.booking_id = tbl_booking.id AND tbl_advertisements.deleted_at IS NULL AND tbl_advertisements.status = 1', 'left');
-        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id', 'left');
+        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id', 'inner');
         $this->db->where('tbl_customer_details.deleted_at', null);
+        $this->db->where('tbl_users.deleted_at', null);
         $this->db->where('tbl_users.active', 1);
-        $this->db->group_by('tbl_customer_details.id');
+        $this->db->where('tbl_users.role', 'customer');
+        $this->db->group_by('tbl_users.id');
         $this->db->order_by('total_ads', 'DESC');
         $query = $this->db->get();
         return $query->result();
