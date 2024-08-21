@@ -11,6 +11,8 @@
     <script src="<?php echo base_url(); ?>assets/js/plugin/webfont/webfont.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/toastr.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/plugin/datatables/datatables.min.js"></script>
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/plugins.min.css" />

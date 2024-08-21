@@ -15,7 +15,7 @@
         <div class="col-md-3">
             <div class="card card-secondary bg-secondary-gradient">
                 <div class="card-body curves-shadow">
-                    <h1>ID : <?php echo $billboard->id;  ?></h1>
+                    <h1>ID : <?php echo $billboard->billboard_id;  ?></h1>
                     <h5 class="op-8"><?php echo $billboard->location_name;  ?></h5>
                     <div class="pull-right">
                         <h3 class="fw-bold op-8">Total Vehicles : <?php echo $billboard->total_vehicle_count; ?></h3>
@@ -37,7 +37,7 @@
 
         <div class="col-md-3">
             <div class="card card-secondary bg-secondary-gradient">
-                <div class="card-body curves-shadow">
+                <div class="card-body bubble-shadow">
                     <h1>ID : <?php echo $customer->id; ?></h1>
                     <h5 class="op-8"><?php echo $customer->name; ?></h5>
                     <div class="pull-right op-8">

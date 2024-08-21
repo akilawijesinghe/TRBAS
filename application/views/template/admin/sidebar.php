@@ -9,6 +9,7 @@ if ($role == 'admin') {
 }
 
 $uri = $this->uri->segment(1);
+$sub_uri = $this->uri->segment(2);
 ?>
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
@@ -85,25 +86,17 @@ $uri = $this->uri->segment(1);
                         <p>Users</p>
                     </a>
                 </li>
-                <!-- Reports -->
-                <!-- <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
-                    <a href="<?php echo base_url(); ?>index.php/report" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
-                        <p>Reports</p>
-                    </a>
-                </li> -->
-
                 <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
                     <a data-bs-toggle="collapse" href="#reports">
                         <i class="fas fa-chart-line"></i>
                         <p>Reports</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="reports">
+                    <div class="collapse <?php if ($uri == 'report') echo 'show'; ?>" id="reports">
                         <ul class="nav nav-collapse">
-                            <li>
-                                <a href="report">
-                                    <span class="sub-item">Traffic Reports</span>
+                            <li class="<?php if ($sub_uri == 'traffic_report') echo 'active'; ?>">
+                                <a href="<?php echo base_url(); ?>index.php/report/traffic_report">
+                                    <span class="sub-item">Traffic Volmume Report</span>
                                 </a>
                             </li>
                             <li>

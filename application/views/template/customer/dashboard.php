@@ -29,12 +29,11 @@
         }
 
     foreach ($ads as $ad) { 
-        //  check the from date and to date of the booking and compare it with the current date and check if the ad is active
         $from_date = strtotime($ad->from_date);
         $to_date = strtotime($ad->to_date);
         $current_date = strtotime(date('Y-m-d'));
         $status = $current_date >= $from_date && $current_date <= $to_date ? 'Ongoing' : 'Expired';
-        // need to change badge color based on the status
+
         if ($status == 'Ongoing') {
             $bdg_color = 'badge-success';
         } else {
@@ -46,7 +45,7 @@
         <div class="col-md-3">
         <a href="<?php echo $video_url; ?>" target="_blank">
             <div class="card card-secondary bg-secondary-gradient">
-                <div class="card-body curves-shadow">
+                <div class="card-body bubble-shadow">
                     <h5 class="op-8">Ad ID : <?php echo $ad->ad_id; ?></h5>
                     <div class="pull-right op-8">
                         <h3 class="fw-bold">Total Vehicles : <?php echo $ad->total_vehicles; ?></h3>

@@ -125,8 +125,8 @@ class Login extends CI_Controller
                 $this->session->set_userdata('user_role', $data['role']);
 
                 http_response_code(200);
-                echo json_encode(array('status' => 'success', 'message' => 'Registration successful', 'role' => $data['role']));
-                redirect('customer');
+                $url = "customer_dashboard";
+                echo json_encode(array('status' => 'success', 'message' => 'Registration successful', 'role' => $url));
             } else {
                 http_response_code(422);
                 $error[] = 'Registration failed';
