@@ -1,5 +1,4 @@
 <?php
-
 // check the session user role
 $role = $this->session->userdata('user_role');
 if ($role == 'admin') {
@@ -33,12 +32,12 @@ $sub_uri = $this->uri->segment(2);
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <!-- <li class="nav-item <?php if ($uri == 'admin') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'admin') echo 'active'; ?>">
                     <a href="<?php echo base_url() . $dashboard_url; ?>" class="nav-link">
                         <i class="fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item <?php if ($uri == 'billboard') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>billboard" class="nav-link">
                         <i class="fas fa-chalkboard-teacher"></i>
@@ -52,19 +51,19 @@ $sub_uri = $this->uri->segment(2);
                     </a>
                 </li>
                 <!-- Bookings -->
-                <!-- <li class="nav-item <?php if ($uri == 'booking') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'booking') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>booking" class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
                         <p>Bookings</p>
                     </a>
-                </li> -->
+                </li>
                 <!-- Advertisements -->
-                <!-- <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>advertisement" class="nav-link">
                         <i class="fab fa-adversal"></i>
                         <p>Advertisements</p>
                     </a>
-                </li> -->
+                </li>
                 <!-- Customer -->
                 <li class="nav-item <?php if ($uri == 'customer') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>customer" class="nav-link">

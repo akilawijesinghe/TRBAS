@@ -14,7 +14,13 @@ class User_model extends CI_Model
     {
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['created_by'] = $this->session->userdata('user_id');
-        return $this->db->insert($this->table, $data);
+        $this->db->insert($this->table, $data);
+        return $this->db->insert_id();
+    }
+
+    public function save_user_role($data)
+    {
+        return $this->db->insert('tbl_user_role', $data);
     }
 
     public function update_user($data, $id)
@@ -37,9 +43,11 @@ class User_model extends CI_Model
 
     public function get_users()
     {
-        $this->db->select('*');
+        $this->db->select('tbl_users.*');
         $this->db->from('tbl_users');
-        $this->db->where('role', 'admin');
+        $this->db->join('tbl_user_role', 'tbl_user_role.user_id = tbl_users.id', 'left');
+        $this->db->join('tbl_role', 'tbl_role.id = tbl_user_role.role_id', 'left');
+        $this->db->where('tbl_role.role_name', 'admin');
         $this->db->where('tbl_users.deleted_at', NULL);
         $query = $this->db->get();
         return $query->result_array();

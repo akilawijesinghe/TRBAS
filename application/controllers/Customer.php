@@ -56,7 +56,7 @@ class Customer extends MY_Controller
             // unset confirm password
             unset($post_data['password_conform']);
             // set customer role as admin
-            $post_data['role'] = 'customer';
+            // $post_data['role'] = 'customer';
             // save the customer
             if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
                 // Update customer
@@ -73,6 +73,12 @@ class Customer extends MY_Controller
                 // Set timestamps and customer data
                 $post_data['password'] = password_hash($post_data['password'], PASSWORD_DEFAULT);
                 $res = $this->Customer_model->save_customer($post_data);
+                // Save user role
+                $role_data = [
+                    'user_id' => $res,
+                    'role_id' => 2
+                ];
+                $this->User_model->save_user_role($role_data);
             }
             if ($res) {
                 echo json_encode(['status' => 'success', 'message' => 'Customer saved successfully']);
