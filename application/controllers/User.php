@@ -54,7 +54,7 @@ class User extends MY_Controller
             // unset confirm password
             unset($post_data['password_conform']);
             // set user role as admin
-            $post_data['role'] = 'admin';
+            // $post_data['role'] = 'admin';
             // save the user
             if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
                 // Update user
@@ -71,6 +71,12 @@ class User extends MY_Controller
                 // Set timestamps and user data
                 $post_data['password'] = password_hash($post_data['password'], PASSWORD_DEFAULT);
                 $res = $this->User_model->save_user($post_data);
+
+                $role_data = [
+                    'user_id' => $res,
+                    'role_id' => 1
+                ];
+                $this->User_model->save_user_role($role_data);
             }
             if ($res) {
                 echo json_encode(['status' => 'success', 'message' => 'User saved successfully']);

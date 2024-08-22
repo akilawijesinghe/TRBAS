@@ -15,13 +15,10 @@ class Admin_dashboard extends MY_Controller
 
     public function index()
     {
-        // Load data for admin dashboard
         $data = array();
         $data['title'] = 'Admin Dashboard';
         $data['billboards'] = $this->Dashboard_model->get_billboards_stats();
         $data['customers'] = $this->Dashboard_model->get_customers();
-        $data['billboards'] = array();
-        $data['customers'] = array();
         $this->_render_view('template/admin/dashboard', $data);
     }
 }

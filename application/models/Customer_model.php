@@ -23,15 +23,16 @@ class Customer_model extends CI_Model
         unset($data['business_address']);
 
         $this->db->insert('tbl_users', $data);
-        $customer_id = $this->db->insert_id();
+        $user_id = $this->db->insert_id();
 
         $customer_data = array(
             'abn' => $abn,
             'business_address' => $business_address,
-            'user_id' => $customer_id
+            'user_id' => $user_id
         );
         
-        return $this->db->insert($this->table, $customer_data);
+        $this->db->insert($this->table, $customer_data);
+        return $user_id;
         
     }
 
@@ -74,7 +75,9 @@ class Customer_model extends CI_Model
         $this->db->select('tbl_customer_details.id as customer_id, abn, business_address,tbl_users.id as id, tbl_users.name, tbl_users.email, tbl_users.contact, tbl_users.active');
         $this->db->from('tbl_customer_details');
         $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id');
-        $this->db->where('tbl_users.role', 'customer');
+        $this->db->join('tbl_user_role', 'tbl_user_role.user_id = tbl_users.id', 'left');
+        $this->db->join('tbl_role', 'tbl_role.id = tbl_user_role.role_id', 'left');
+        $this->db->where('tbl_role.role_name', 'customer');
         $this->db->where('tbl_users.deleted_at', NULL);
         // if user is customer show only his details
         if ($this->session->userdata('user_role') == 'customer') {

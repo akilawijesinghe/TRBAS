@@ -2,10 +2,15 @@
     <!-- headding billboard stats -->
     <h4 class="fw-bold">Billboard Stats</h4>
     <?php
-    if($ads == null){
+    if ($ads == null) {
         echo "<p>No Billboards Found</p>";
     }
-    foreach ($customers as $customer) { ?>
+    foreach ($customers as $customer) {
+
+        if ($customer->total_vehicle_count == "") {
+            $customer->total_vehicle_count = 0;
+        }
+    ?>
         <div class="col-md-3">
             <div class="card card-secondary bg-secondary-gradient">
                 <div class="card-body curves-shadow">
@@ -24,11 +29,11 @@
     <h4 class="fw-bold">Ads Stats</h4>
     <?php
 
-        if($ads == null){
-            echo "<p>No Ads Found</p>";
-        }
+    if ($ads == null) {
+        echo "<p>No Ads Found</p>";
+    }
 
-    foreach ($ads as $ad) { 
+    foreach ($ads as $ad) {
         $from_date = strtotime($ad->from_date);
         $to_date = strtotime($ad->to_date);
         $current_date = strtotime(date('Y-m-d'));
@@ -41,18 +46,22 @@
         }
         $video_url = base_url() . "/advertisement/view_video/" . $ad->ad_id . "/" . $ad->booking_id;
 
-        ?>
+        if ($ad->total_vehicles == "") {
+            $ad->total_vehicles = 0;
+        }
+
+    ?>
         <div class="col-md-3">
-        <a href="<?php echo $video_url; ?>" target="_blank">
-            <div class="card card-secondary bg-secondary-gradient">
-                <div class="card-body bubble-shadow">
-                    <h5 class="op-8">Ad ID : <?php echo $ad->ad_id; ?></h5>
-                    <div class="pull-right op-8">
-                        <h3 class="fw-bold">Total Vehicles : <?php echo $ad->total_vehicles; ?></h3>
-                        <span class="badge <?php echo $bdg_color; ?> float-end"><?php echo $status; ?></span>
+            <a href="<?php echo $video_url; ?>" target="_blank">
+                <div class="card card-secondary bg-secondary-gradient">
+                    <div class="card-body bubble-shadow">
+                        <h5 class="op-8">Ad ID : <?php echo $ad->ad_id; ?></h5>
+                        <div class="pull-right op-8">
+                            <h3 class="fw-bold">Total Vehicles : <?php echo $ad->total_vehicles; ?></h3>
+                            <span class="badge <?php echo $bdg_color; ?> float-end"><?php echo $status; ?></span>
+                        </div>
                     </div>
                 </div>
-            </div>
             </a>
         </div>
     <?php } ?>
