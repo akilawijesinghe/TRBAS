@@ -68,13 +68,16 @@
                 <!-- drop zone -->
                 <div class="card-body">
                     <input type="hidden" id="bookingid">
+                    <!-- lable for only mp4 and below 15 sec and below 10 mb -->
+                    <small><label for="videoDropzone">Upload Video (MP4, MOV, AVI, MPEG4, FLV, 3GPP, 15 seconds max, 10MB max)</label></small>
                     <form action="<?php echo base_url(); ?>advertisement/upload_video" class="dropzone" id="videoDropzone"></form>
 
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.js"></script>
                     <script>
                         Dropzone.options.videoDropzone = {
                             url: "<?php echo base_url(); ?>advertisement/upload_video",
-                            acceptedFiles: "video/*",
+                            maxFilesize: 20480, // MB
+                            acceptedFiles: ".mp4,.mov,.avi,.mpeg4,.flv,.3gpp",
                             maxFiles: 1,
                             autoProcessQueue: false,
                             init: function() {
@@ -91,7 +94,7 @@
                                     videoElement.src = URL.createObjectURL(file);
 
                                     videoElement.onloadedmetadata = function() {
-                                        if (videoElement.duration > 15) {
+                                        if (videoElement.duration >= 16) {
                                             $.notify({
                                                 icon: 'fa fa-info',
                                                 title: 'Error',

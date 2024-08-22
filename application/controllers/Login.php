@@ -59,10 +59,15 @@ class Login extends CI_Controller
             $user = $this->Login_model->auth($email);
 
             if ($user && password_verify($password, $user['password'])) {
+
+                $role = $this->Login_model->get_user_role($user['id']);
+                $user['role'] = $role['role_name'];
+
                 $this->session->set_userdata('user_id', $user['id']);
                 $this->session->set_userdata('user_name', $user['name']);
                 $this->session->set_userdata('user_email', $user['email']);
                 $this->session->set_userdata('user_role', $user['role']);
+                
                 http_response_code(200);
                 $url = $user['role']."_dashboard";
                 echo json_encode(array('status' => 'success', 'message' => 'Login successful', 'role' => $url));
