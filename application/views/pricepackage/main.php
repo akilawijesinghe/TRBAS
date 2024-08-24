@@ -9,7 +9,6 @@
                     <th>Id</th>
                     <th>Package Name</th>
                     <th>Duration (days)</th>
-                    <th>Price per day</th>
                     <th>Discount</th>
                     <th>Active</th>
                     <th>Actions</th>
@@ -21,7 +20,6 @@
                         <td><?php echo $pricepackage['id']; ?></td>
                         <td><?php echo $pricepackage['package_name']; ?></td>
                         <td><?php echo $pricepackage['duration']; ?></td>
-                        <td><?php echo $pricepackage['price']; ?></td>
                         <td><?php echo $pricepackage['discount']; ?>%</td>
                         <?php
 
@@ -34,7 +32,7 @@
                         <td><span class="badge bg-<?php echo $active == 'Yes' ? 'success' : 'danger'; ?>"><?php echo $active; ?></span></td>
                         <td>
                             <button class="btn btn-danger deletepricepackage" data-id="<?php echo $pricepackage['id']; ?>" data-bs-toggle="modal" data-bs-target="#deletepricepackageModal">Delete</button >
-                            <button class="btn btn-primary editpricepackage" data-id="<?php echo $pricepackage['id']; ?>" data-package_name="<?php echo $pricepackage['package_name']; ?>" data-duration="<?php echo $pricepackage['duration']; ?>" data-price="<?php echo $pricepackage['price']; ?>" data-discount="<?php echo $pricepackage['discount']; ?>" data-active="<?php echo $pricepackage['active']; ?>" data-bs-toggle="modal" data-bs-target="#addpricepackageModal">Edit</button>
+                            <button class="btn btn-primary editpricepackage" data-id="<?php echo $pricepackage['id']; ?>" data-package_name="<?php echo $pricepackage['package_name']; ?>" data-duration="<?php echo $pricepackage['duration']; ?>" data-discount="<?php echo $pricepackage['discount']; ?>" data-active="<?php echo $pricepackage['active']; ?>" data-bs-toggle="modal" data-bs-target="#addpricepackageModal">Edit</button>
                         </td>
                     </tr>
                     </tr>
@@ -64,12 +62,6 @@
                         <label for="type" class="col-sm-2 col-form-label">Days</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="duration" name="duration" placeholder="Duration">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="mac_address" class="col-sm-2 col-form-label">Price per day</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Price">
                         </div>
                     </div>
                     <div class="form-group row">
