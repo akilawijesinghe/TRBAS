@@ -35,7 +35,6 @@ class Price_package extends MY_Controller
         // validate the post data
         $this->form_validation->set_rules('package_name', 'Package Name', 'required');
         $this->form_validation->set_rules('duration', 'Duration', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required');
         $this->form_validation->set_rules('discount', 'Discount', 'required');
         $this->form_validation->set_rules('active', 'Active', 'required');
 

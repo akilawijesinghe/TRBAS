@@ -191,23 +191,24 @@ $(document).ready(function () {
 		$("#price_package_id option").each(function () {
 			durations.push($(this).data("duration"));
 		});
+		// sort in descending order
 		durations.sort(function (a, b) {
-			return a - b;
-		}); // Sort in ascending order
+			return b - a;
+		});
 
-		// Determine the correct price package
+		// Find the first duration that is less than or equal to the number of days
 		var selectedOption = null;
 		for (var i = 0; i < durations.length; i++) {
-			if (
-				days >= durations[i] &&
-				(i == durations.length - 1 || days < durations[i + 1])
-			) {
-				selectedOption = $(
-					"#price_package_id option[data-duration='" + durations[i] + "']"
-				);
+			if (days >= durations[i]) {
+				selectedOption = $("#price_package_id option").filter(function () {
+					return $(this).data("duration") == durations[i];
+				});
 				break;
 			}
 		}
+
+		// get seleted billborad data-price variable
+		var billboard_price = $("#billboard_id option:selected").data("price_per_day");
 
 		if (selectedOption) {
 			selectedOption.prop("selected", true);
@@ -219,7 +220,7 @@ $(document).ready(function () {
 		}
 
 		// Get the price and discount for the selected option
-		var price = parseFloat(selectedOption.data("price"));
+		var price = parseFloat(billboard_price);
 		var discount = parseFloat(selectedOption.data("discount"));
 
 		// Calculate the total price with discount applied

@@ -25,18 +25,23 @@
                         <td><?php
 
                             // check the expiration date and add a badge
-                            $from_date = strtotime($booking['from_date']);
-                            $to_date = strtotime($booking['to_date']);
+                            $from_date = strtotime(date('Y-m-d', strtotime($booking['from_date'])));
+                            $to_date = strtotime(date('Y-m-d', strtotime($booking['to_date'])));
                             $current_date = strtotime(date('Y-m-d'));
-                            if ($current_date >= $from_date && $current_date <= $to_date) {
+
+                            if ($current_date < $from_date) {
+                                // Future date, event has not started yet
+                                $badge = 'warning';
+                            } elseif ($current_date >= $from_date && $current_date <= $to_date) {
+                                // Current date is within the range
                                 $badge = 'success';
                             } else {
+                                // Past date, event has ended
                                 $badge = 'danger';
                             }
-
                             echo $booking['from_date'] . ' to ' . $booking['to_date'];
                             ?>
-                            <br><span class="badge bg-<?php echo $badge; ?>"><?php echo $badge == 'success' ? 'Ongoing' : 'Expired'; ?></span>
+                            <br><span class="badge bg-<?php echo $badge; ?>"><?php echo $badge == 'warning' ? 'Future' : ($badge == 'success' ? 'Active' : 'Expired'); ?></span>
 
                         </td>
                         <td>
@@ -86,7 +91,7 @@
                             <select class="form-select" id="billboard_id" name="billboard_id">
                                 <option value="">Select Billboard</option>
                                 <?php foreach ($billboards as $billboard) : ?>
-                                    <option value="<?php echo $billboard['id']; ?>"><?php echo $billboard['location']; ?></option>
+                                    <option value="<?php echo $billboard['id']; ?>" data-price_per_day="<?php echo $billboard['price_per_day']; ?>"><?php echo $billboard['location']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -129,7 +134,7 @@
                             <select class="form-select" id="price_package_id" name="price_package_id" disabled>
                                 <option value="">Select date range first</option>
                                 <?php foreach ($price_packages as $price_package) : ?>
-                                    <option data-price="<?php echo $price_package['price']; ?>" data-discount="<?php echo $price_package['discount']; ?>" data-duration="<?php echo $price_package['duration']; ?>" value="<?php echo $price_package['id']; ?>"><?php echo $price_package['package_name']; ?></option>
+                                    <option data-discount="<?php echo $price_package['discount']; ?>" data-duration="<?php echo $price_package['duration']; ?>" value="<?php echo $price_package['id']; ?>"><?php echo $price_package['package_name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

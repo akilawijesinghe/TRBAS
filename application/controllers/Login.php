@@ -67,9 +67,9 @@ class Login extends CI_Controller
                 $this->session->set_userdata('user_name', $user['name']);
                 $this->session->set_userdata('user_email', $user['email']);
                 $this->session->set_userdata('user_role', $user['role']);
-                
+
                 http_response_code(200);
-                $url = $user['role']."_dashboard";
+                $url = $user['role'] . "_dashboard";
                 echo json_encode(array('status' => 'success', 'message' => 'Login successful', 'role' => $url));
             } else {
                 http_response_code(422);
@@ -108,8 +108,7 @@ class Login extends CI_Controller
                 'name' => $this->input->post('name'),
                 'email' => $this->input->post('email_reg'),
                 'contact' => $this->input->post('contact'),
-                'password' => $hashed_password,
-                'role' => 'customer'
+                'password' => $hashed_password
             );
 
             $this->load->model('Login_model');
@@ -122,12 +121,18 @@ class Login extends CI_Controller
             );
             $customer = $this->Login_model->register_customer($customer_data);
 
+            $role_data = array(
+                'user_id' => $user,
+                'role_id' => 2
+            );
+            $this->db->insert('tbl_user_role', $role_data);
+
             if ($user && $customer) {
                 // set the user session
                 $this->session->set_userdata('user_id', $user);
                 $this->session->set_userdata('user_name', $data['name']);
                 $this->session->set_userdata('user_email', $data['email']);
-                $this->session->set_userdata('user_role', $data['role']);
+                $this->session->set_userdata('user_role', 'customer');
 
                 http_response_code(200);
                 $url = "customer_dashboard";

@@ -34,8 +34,14 @@ class User extends MY_Controller
 
         // validate the post data
         $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('contact', 'Contact', 'numeric');
+
+        // if id is present, check unique ness of the email
+        if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        } else {
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_users.email]');
+        }
 
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
             if (!empty($post_data['password'])) {
@@ -53,8 +59,6 @@ class User extends MY_Controller
         } else {
             // unset confirm password
             unset($post_data['password_conform']);
-            // set user role as admin
-            // $post_data['role'] = 'admin';
             // save the user
             if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
                 // Update user
