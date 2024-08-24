@@ -50,7 +50,7 @@ $sub_uri = $this->uri->segment(2);
                         <p>Locations</p>
                     </a>
                 </li>
-                <!-- Bookings -->
+                
                 <li class="nav-item <?php if ($uri == 'booking') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>booking" class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
@@ -58,12 +58,12 @@ $sub_uri = $this->uri->segment(2);
                     </a>
                 </li>
                 <!-- Advertisements -->
-                <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
+                <!-- <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>advertisement" class="nav-link">
                         <i class="fab fa-adversal"></i>
                         <p>Advertisements</p>
                     </a>
-                </li>
+                </li> -->
                 <!-- Customer -->
                 <li class="nav-item <?php if ($uri == 'customer') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>customer" class="nav-link">

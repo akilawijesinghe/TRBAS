@@ -12,6 +12,7 @@
                     <th>Type</th>
                     <th>Mac Address</th>
                     <th>Min Vehicle Count</th>
+                    <th>Price Per Day</th>
                     <th>Active</th>
                     <th>Actions</th>
                 </tr>
@@ -25,6 +26,7 @@
                         <td><?php echo $billboard['type']; ?></td>
                         <td><?php echo $billboard['mac_address']; ?></td>
                         <td><?php echo $billboard['minimum_vehicle_count']; ?></td>
+                        <td>$<?php echo $billboard['price_per_day']; ?></td>
                         <?php
 
                         if ($billboard['active'] == 1) {
@@ -47,7 +49,7 @@
 </div>
 
 <div class="modal" id="addBillboardModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Billboard</h4>
@@ -88,9 +90,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="minimum_vehicle_count" class="col-sm-2 col-form-label">Minimum Vehicle Count</label>
+                        <label for="minimum_vehicle_count" class="col-sm-2 col-form-label">Min Vehicle Count</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="minimum_vehicle_count" name="minimum_vehicle_count" placeholder="Minimum Vehicle Count">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="price_per_day" class="col-sm-2 col-form-label">Price Per Day</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="price_per_day" name="price_per_day" placeholder="Price Per Day">
                         </div>
                     </div>
                     <div class="form-group row">

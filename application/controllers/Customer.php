@@ -35,9 +35,16 @@ class Customer extends MY_Controller
 
         // validate the post data
         $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('contact', 'Contact', 'numeric');
         $this->form_validation->set_rules('business_address', 'Business Address', 'required');
+        $this->form_validation->set_rules('price_per_day', 'Price Per Day', 'required|numeric');
+
+        // if id is present, check unique ness of the email
+        if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        } else {
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_users.email]');
+        }
 
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
             if (!empty($post_data['password'])) {
