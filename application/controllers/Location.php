@@ -40,7 +40,7 @@ class Location extends MY_Controller
         $post_data = $this->escape_post($_POST);
 
         // validate the post data
-        $this->form_validation->set_rules('location_name', 'Location Name', 'required');
+        $this->form_validation->set_rules('location_name', 'Location Name', 'required|is_unique[tbl_locations.location_name]');
 
         if ($this->form_validation->run() == FALSE) {
             http_response_code(422);
