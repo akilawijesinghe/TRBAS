@@ -87,14 +87,9 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('email_reg', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('contact', 'Contact', 'required');
         $this->form_validation->set_rules('address', 'Address', 'required');
-        $this->form_validation->set_rules('passwordreg', 'Password', 'required');
+        $this->form_validation->set_rules('passwordreg', 'Password', 'required|min_length[8]|regex_match[/[0-9]/]|regex_match[/[A-Z]/]|regex_match[/[a-z]/]|regex_match[/[^a-zA-Z0-9]/]');
         $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[passwordreg]');
         $this->form_validation->set_rules('email_reg', 'Email', 'is_unique[tbl_users.email]');
-        $this->form_validation->set_rules('passwordreg', 'Password', 'min_length[8]');
-        $this->form_validation->set_rules('passwordreg', 'Password', 'regex_match[/[0-9]/]');
-        $this->form_validation->set_rules('passwordreg', 'Password', 'regex_match[/[A-Z]/]');
-        $this->form_validation->set_rules('passwordreg', 'Password', 'regex_match[/[a-z]/]');
-        $this->form_validation->set_rules('passwordreg', 'Password', 'regex_match[/[^a-zA-Z0-9]/]');
 
         if ($this->form_validation->run() == FALSE) {
             http_response_code(422);

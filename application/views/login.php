@@ -85,6 +85,7 @@
                                 <div class="form-group row">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" name="passwordreg" id="passwordreg" placeholder="Password" />
+                                    <small><span class="password-hint">Password must be 8+ characters, include uppercase, lowercase, a number, and a special character.</span></small>
                                 </div>
                                 <div class="form-group row">
                                     <label for="confirm_password">Confirm Password</label>
