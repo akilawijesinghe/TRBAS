@@ -33,7 +33,7 @@ class Price_package extends MY_Controller
         $post_data = $this->escape_post($_POST);
 
         // validate the post data
-        $this->form_validation->set_rules('package_name', 'Package Name', 'required');
+        $this->form_validation->set_rules('package_name', 'Package Name', 'required|is_unique[tbl_price_packages.package_name]');
         $this->form_validation->set_rules('duration', 'Duration', 'required');
         $this->form_validation->set_rules('discount', 'Discount', 'required');
         $this->form_validation->set_rules('active', 'Active', 'required');
