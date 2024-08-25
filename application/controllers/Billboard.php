@@ -40,6 +40,8 @@ class Billboard extends MY_Controller
         $this->form_validation->set_rules('type', 'Type', 'required');
         $this->form_validation->set_rules('mac_address', 'Mac Address', 'required');
         $this->form_validation->set_rules('active', 'Active', 'required');
+        $this->form_validation->set_rules('price_per_day', 'Price Per Day', 'required|numeric');
+        $this->form_validation->set_rules('minimum_vehicle_count', 'Minimum Vehicle Count', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             http_response_code(422);

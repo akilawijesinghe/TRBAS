@@ -37,7 +37,6 @@ class Customer extends MY_Controller
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('contact', 'Contact', 'numeric');
         $this->form_validation->set_rules('business_address', 'Business Address', 'required');
-        $this->form_validation->set_rules('price_per_day', 'Price Per Day', 'required|numeric');
 
         // if id is present, check unique ness of the email
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
@@ -48,11 +47,11 @@ class Customer extends MY_Controller
 
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
             if (!empty($post_data['password'])) {
-                $this->form_validation->set_rules('password', 'Password', 'required');
+                $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|regex_match[/[0-9]/]|regex_match[/[A-Z]/]|regex_match[/[a-z]/]|regex_match[/[^a-zA-Z0-9]/]');
                 $this->form_validation->set_rules('password_conform', 'Confirm Password', 'required|matches[password]');
             }
         } else {
-            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|regex_match[/[0-9]/]|regex_match[/[A-Z]/]|regex_match[/[a-z]/]|regex_match[/[^a-zA-Z0-9]/]');
             $this->form_validation->set_rules('password_conform', 'Confirm Password', 'required|matches[password]');
         }
 

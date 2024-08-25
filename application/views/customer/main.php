@@ -35,7 +35,7 @@
                         ?>
                         <td><span class="badge bg-<?php echo $active == 'Yes' ? 'success' : 'danger'; ?>"><?php echo $active; ?></span></td>
                         <td>
-                            <button class="btn btn-danger deletecustomer" data-id="<?php echo $customer['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">Delete</button >
+                            <button class="btn btn-danger deletecustomer" data-id="<?php echo $customer['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">Delete</button>
                             <button class="btn btn-primary editcustomer" data-id="<?php echo $customer['id']; ?>" data-name="<?php echo $customer['name']; ?>" data-email="<?php echo $customer['email']; ?>" data-contact="<?php echo $customer['contact']; ?>" data-active="<?php echo $customer['active']; ?>" data-bs-toggle="modal" data-bs-target="#addCustomerModal" data-business_address="<?php echo $customer['business_address']; ?>" data-abn="<?php echo $customer['abn']; ?>">Edit</button>
                         </td>
                     </tr>
@@ -89,8 +89,9 @@
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <small><span class="password-hint">Password must be 8+ characters, include uppercase, lowercase, a number, and a special character.</span></small>
                         </div>
-                    </div> 
+                    </div>
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Confirm</label>
                         <div class="col-sm-10">
