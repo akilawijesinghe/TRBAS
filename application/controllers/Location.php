@@ -46,7 +46,6 @@ class Location extends MY_Controller
             $this->form_validation->set_rules('location_name', 'Location Name', 'required|is_unique[tbl_locations.location_name]');
         }
 
-
         if ($this->form_validation->run() == FALSE) {
             http_response_code(422);
             echo json_encode($this->form_validation->error_array());
