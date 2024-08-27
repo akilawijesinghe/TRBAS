@@ -90,7 +90,7 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('passwordreg', 'Password', 'required|min_length[8]|regex_match[/[0-9]/]|regex_match[/[A-Z]/]|regex_match[/[a-z]/]|regex_match[/[^a-zA-Z0-9]/]');
         $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[passwordreg]');
         $this->form_validation->set_rules('email_reg', 'Email', 'required|valid_email|callback_email_check');
-        
+
 
         if ($this->form_validation->run() == FALSE) {
             http_response_code(422);
@@ -138,6 +138,20 @@ class Login extends CI_Controller
                 $error[] = 'Registration failed';
                 echo json_encode($error);
             }
+        }
+    }
+    public function email_check($email)
+    {
+        $this->load->database();
+        $this->db->where('email', $email);
+        $this->db->where('deleted_at', NULL);
+        $query = $this->db->get('tbl_users');
+
+        if ($query->num_rows() > 0) {
+            $this->form_validation->set_message('email_check', 'The {field} is already taken.');
+            return FALSE;
+        } else {
+            return TRUE;
         }
     }
 }
