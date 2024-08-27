@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller
     {
         $this->load->view('template/header');
         $data['content'] = $this->load->view($view, $data, TRUE);
-        if(!isset($data['title'])) $data['title'] = 'Welcome';
+        if (!isset($data['title'])) $data['title'] = 'Welcome';
         $this->load->view('template/content', $data);
         $this->load->view('template/footer');
     }
@@ -58,5 +58,20 @@ class MY_Controller extends CI_Controller
         $data['updated_at'] = date('Y-m-d H:i:s');
         $data['updated_by'] = $this->session->userdata('user_id');
         return $this->db->update($table, $data, $where);
+    }
+
+    public function email_check($email)
+    {
+        $this->load->database();
+        $this->db->where('email', $email);
+        $this->db->where('deleted_at', NULL);
+        $query = $this->db->get('tbl_users');
+
+        if ($query->num_rows() > 0) {
+            $this->form_validation->set_message('email_check', 'The {field} is already taken.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 }

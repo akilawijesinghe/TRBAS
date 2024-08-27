@@ -42,7 +42,8 @@ class Customer extends MY_Controller
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         } else {
-            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_users.email]');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_check');
+            // the email is unique and deleted is null
         }
 
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
