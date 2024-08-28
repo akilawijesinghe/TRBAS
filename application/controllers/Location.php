@@ -43,7 +43,7 @@ class Location extends MY_Controller
         if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
             $this->form_validation->set_rules('location_name', 'Location Name', 'required');
         } else {
-            $this->form_validation->set_rules('location_name', 'Location Name', 'required|is_unique[tbl_locations.location_name]');
+            $this->form_validation->set_rules('location_name', 'Location Name', 'required|callback_location_check');
         }
 
         if ($this->form_validation->run() == FALSE) {
