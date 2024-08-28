@@ -74,4 +74,34 @@ class MY_Controller extends CI_Controller
             return TRUE;
         }
     }
+
+    public function location_check($location_name)
+    {
+        $this->load->database();
+        $this->db->where('location_name', $location_name);
+        $this->db->where('deleted_at', NULL);
+        $query = $this->db->get('tbl_locations');
+
+        if ($query->num_rows() > 0) {
+            $this->form_validation->set_message('location_check', 'The {field} is already taken.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
+    public function price_package_check($package_name)
+    {
+        $this->load->database();
+        $this->db->where('package_name', $package_name);
+        $this->db->where('deleted_at', NULL);
+        $query = $this->db->get('tbl_price_packages');
+
+        if ($query->num_rows() > 0) {
+            $this->form_validation->set_message('price_package_check', 'The {field} is already taken.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
 }

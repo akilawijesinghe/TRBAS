@@ -36,7 +36,7 @@ class Price_package extends MY_Controller
         if(!empty($post_data['id']) && is_numeric($post_data['id'])) {
             $this->form_validation->set_rules('package_name', 'Package Name', 'required');
         }else{
-            $this->form_validation->set_rules('package_name', 'Package Name', 'required|is_unique[tbl_price_packages.package_name]');
+            $this->form_validation->set_rules('package_name', 'Package Name', 'required|callback_price_package_check');
         }
 
         $this->form_validation->set_rules('duration', 'Duration', 'required');
