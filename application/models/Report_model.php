@@ -46,4 +46,17 @@ class Report_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_revenue_info($from_date, $to_date)
+    {
+        $this->db->select('*, sum(total_price) as total_revenue');
+        $this->db->from('tbl_booking');
+        $this->db->where('date(created_at) >=', $from_date);
+        $this->db->where('date(created_at) <=', $to_date);
+        $this->db->group_by('from_date');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+
 }

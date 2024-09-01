@@ -42,4 +42,14 @@ class Billboard_model extends CI_Model
         return $query->result_array();
     }
 
+    public function get_billboard($id)
+    {
+        $this->db->select('tbl_billboards.*, tbl_locations.location_name as location');
+        $this->db->from('tbl_billboards');
+        $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'left');
+        $this->db->where('tbl_billboards.id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
 }

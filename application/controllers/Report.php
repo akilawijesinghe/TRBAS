@@ -54,9 +54,6 @@ class Report extends MY_Controller
             $data['from_date'] = $from_date;
             $data['to_date'] = $to_date;
             $data['data'] = $this->Report_model->get_ads_info($from_date, $to_date);
-            // print_r('<pre>');
-            // print_r($data['data']);die;
-            // print_r('</pre>');
             $this->load->view('report/pdf/ad_performance', $data);
         } else {
             $data['title'] = "Ad Performance Report";
@@ -80,7 +77,7 @@ class Report extends MY_Controller
             $to_date = $this->input->post('to_date');
             $data['from_date'] = $from_date;
             $data['to_date'] = $to_date;
-            $data['data'] = $this->Report_model->get_billboards_info($from_date, $to_date);
+            $data['data'] = $this->Report_model->get_revenue_info($from_date, $to_date);
             $this->load->view('report/pdf/revenue_report', $data);
         } else {
             $data['title'] = "Revenue Report";

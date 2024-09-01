@@ -35,7 +35,6 @@ class Dashboard_model extends CI_Model
         return $query->result();
     }
 
-
     public function get_customer_billboards()
     {
         $this->db->select('
