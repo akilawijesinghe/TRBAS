@@ -24,19 +24,10 @@ class Admin_dashboard extends MY_Controller
 
     public function send_mail()
     {
-        $this->load->library('email');
-        $this->email->from('minolijayasinghe99@gmail.com', 'Your Name');
-        $this->email->to('akilawijesinghe94@gmail.com');
-
-        $this->email->subject('Email Test');
-        $this->email->message('Testing the email class using local SMTP.');
-
-        // Send the email
-        if ($this->email->send()) {
+        if ($this->emailer->send_email('minolijayasinghe99@gmail.com', 'Test Email', '<p>This is a test email.</p>')) {
             echo 'Email sent successfully.';
         } else {
-            echo 'Email failed to send.';
-            echo $this->email->print_debugger();
+            echo 'Failed to send email.';
         }
     }
 }
