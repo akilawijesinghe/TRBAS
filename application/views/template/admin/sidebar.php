@@ -32,7 +32,7 @@ $sub_uri = $this->uri->segment(2);
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item <?php if ($uri == 'admin') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'admin_dashboard') echo 'active'; ?>">
                     <a href="<?php echo base_url() . $dashboard_url; ?>" class="nav-link">
                         <i class="fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
@@ -98,13 +98,13 @@ $sub_uri = $this->uri->segment(2);
                                     <span class="sub-item">Traffic Volmume Report</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="components/buttons.html">
+                            <li class="<?php if ($sub_uri == 'ad_performance_report') echo 'active'; ?>">
+                                <a href="<?php echo base_url(); ?>report/ad_performance_report">
                                     <span class="sub-item">Ad Performance</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="components/buttons.html">
+                            <li class="<?php if ($sub_uri == 'revenue_report') echo 'active'; ?>">
+                                <a href="<?php echo base_url(); ?>report/revenue_report">
                                     <span class="sub-item">Revenue Reports</span>
                                 </a>
                             </li>

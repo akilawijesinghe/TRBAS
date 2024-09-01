@@ -43,8 +43,29 @@ class Login_model extends CI_Model
 
     public function register_customer($data)
     {
+
+        $this->db->select('*');
+        $this->db->from('tbl_customer_details');
+        $this->db->where('user_id', $data['user_id']);
+        $query = $this->db->get();
+        $customer = $query->row_array();
+        unset($data['email']);
+
+        if ($customer) {
+            $this->db->where('user_id', $customer['id']);
+            $this->db->update('tbl_customer_details', $data);
+            return $user['id'];
+        }
+
         $this->db->insert('tbl_customer_details', $data);
-        return $this->db->insert_id();
+        $this->db->insert_id();
+
+        $role_data = array(
+            'user_id' =>  $data['user_id'],
+            'role_id' => 2
+        );
+        $this->db->insert('tbl_user_role', $role_data);
+        return  $data['user_id'];
     }
 
     public function get_user_role($user_id)

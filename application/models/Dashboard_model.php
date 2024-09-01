@@ -5,7 +5,6 @@ class Dashboard_model extends CI_Model
 {
     public function get_billboards_stats()
     {
-
         $this->db->select('tbl_billboards.id as billboard_id, tbl_locations.*, COALESCE(SUM(tbl_traffic_data.vehicle_count), 0) as total_vehicle_count');
         $this->db->from('tbl_billboards');
         $this->db->join('tbl_traffic_data', 'tbl_traffic_data.billboard_id = tbl_billboards.id', 'left');
@@ -51,7 +50,7 @@ class Dashboard_model extends CI_Model
         $this->db->from('tbl_billboards');
         $this->db->join('tbl_traffic_data', 'tbl_traffic_data.billboard_id = tbl_billboards.id', 'left');
         $this->db->join('tbl_customer_details', 'tbl_customer_details.id = tbl_traffic_data.customer_id', 'left');
-        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id AND tbl_users.id = ' . $this->session->userdata('user_id'), 'left');
+        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id AND tbl_users.id = ' . $this->session->userdata('user_id'), 'inner');
         $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'left');
         $this->db->order_by('tbl_traffic_data.time_stamp', 'DESC');
         $this->db->group_by('tbl_billboards.id');  // Grouping by tbl_billboards.id instead of tbl_traffic_data.billboard_id
@@ -77,7 +76,7 @@ class Dashboard_model extends CI_Model
         $this->db->join('tbl_advertisements', 'tbl_advertisements.booking_id = tbl_booking.id', 'left');
         $this->db->join('tbl_traffic_data', 'tbl_traffic_data.ad_id = tbl_advertisements.id', 'left');
         $this->db->join('tbl_customer_details', 'tbl_customer_details.id = tbl_traffic_data.customer_id', 'left');
-        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id AND tbl_users.id = ' . $this->session->userdata('user_id'), 'left');
+        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id AND tbl_users.id = ' . $this->session->userdata('user_id'), 'inner');
         $this->db->group_by('tbl_advertisements.id');
         $query = $this->db->get();
         return $query->result();

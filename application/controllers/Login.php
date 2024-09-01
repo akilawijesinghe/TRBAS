@@ -33,6 +33,9 @@ class Login extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('user_id')) {
+            $this->session->sess_destroy();
+        }
         $this->load->view('login');
     }
 
@@ -118,17 +121,11 @@ class Login extends CI_Controller
             $customer_data = array(
                 'user_id' => $user,
                 'business_address' => $this->input->post('address'),
-                'abn' => $this->input->post('abn')
+                'abn' => $this->input->post('abn'),
+                'email' => $this->input->post('email_reg')
             );
 
             $customer = $this->Login_model->register_customer($customer_data);
-
-            $role_data = array(
-                'user_id' => $user,
-                'role_id' => 2
-            );
-
-            $this->db->insert('tbl_user_role', $role_data);
             // send email verification code and expire time and information
             $email_res = $this->send_email_verification($data);
 
@@ -227,7 +224,7 @@ class Login extends CI_Controller
                 echo json_encode(array('status' => 'success', 'message' => 'Email verified successfully', 'role' => 'customer_dashboard'));
             } else {
                 http_response_code(422);
-                $error['credentials_error_verify'] = 'Invalid verification code or expired';
+                $error['verification_code'] = 'Invalid verification code or expired';
                 echo json_encode($error);
             }
         }
