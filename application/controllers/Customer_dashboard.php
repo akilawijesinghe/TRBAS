@@ -21,9 +21,6 @@ class Customer_dashboard extends My_Controller
         $data['title'] = 'Customer Dashboard';
         $data['customers'] = $this->Dashboard_model->get_customer_billboards();
         $data['ads'] = $this->Dashboard_model->get_customer_ads();
-        $data['customers'] = array();
-        $data['ads'] = array();
-
         $this->_render_view('template/customer/dashboard', $data);
     }
 

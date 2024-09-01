@@ -98,6 +98,32 @@
                             </form>
                         </div>
                     </div>
+                    <!-- verify authentication code -->
+                    <div id="verify_form" style="display: none">
+                        <div class="alert alert-warning" role="alert">
+                            This is one time code to verify your email address. Please check your email for the code.
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title text-center">AMS Verification</div>
+                                <div class="alert alert-danger" role="alert" id="err_cont_verify" style="display: none">
+                                    <span id="credentials_error_verify"></span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" name="verifyForm" id="verifyForm">
+                                    <div class="form-group row">
+                                        <label for="verification_code">Verification Code</label>
+                                        <input type="text" class="form-control" name="verification_code" id="verification_code" placeholder="Enter Verification Code" />
+                                        <input type="hidden" id="email_verify" name="email_verify">
+                                    </div>
+                                    <div class="form-group d-flex justify-content-between">
+                                        <button type="button" class="btn btn-primary" id="verify_btn">Verify</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

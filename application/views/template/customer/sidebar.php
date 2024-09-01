@@ -39,26 +39,26 @@ $uri = $this->uri->segment(1);
                     </a>
                 </li>
                 <!-- Bookings -->
-                <!-- <li class="nav-item <?php if ($uri == 'booking') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'booking') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>booking" class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
                         <p>My Bookings</p>
                     </a>
-                </li> -->
+                </li>
                 <!-- Advertisements -->
-                <!-- <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'advertisement') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>advertisement" class="nav-link">
                         <i class="fab fa-adversal"></i>
                         <p>My Ads</p>
                     </a>
-                </li> -->
+                </li>
                 <!-- Reports -->
-                <!-- <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
+                <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
                     <a href="<?php echo base_url(); ?>report" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         <p>Reports</p>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
                     <a data-bs-toggle="collapse" href="#reports">
                         <i class="fas fa-chart-line"></i>

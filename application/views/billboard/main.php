@@ -38,7 +38,7 @@
                         <td><span class="badge bg-<?php echo $active == 'Yes' ? 'success' : 'danger'; ?>"><?php echo $active; ?></span></td>
                         <td>
                             <button class="btn btn-danger deleteBillboard" data-id="<?php echo $billboard['id']; ?>" data-bs-toggle="modal" data-bs-target="#deleteBillboardModal">Delete</button >
-                            <button class="btn btn-primary editBillboard" data-id="<?php echo $billboard['id']; ?>" data-location_id="<?php echo $billboard['location_id']; ?>" data-size="<?php echo $billboard['size']; ?>" data-type="<?php echo $billboard['type']; ?>" data-mac_address="<?php echo $billboard['mac_address']; ?>" data-active="<?php echo $billboard['active']; ?>" data-minimum_vehicle_count="<?php echo $billboard['minimum_vehicle_count']?>" data-bs-toggle="modal" data-bs-target="#addBillboardModal">Edit</button>
+                            <button class="btn btn-primary editBillboard" data-id="<?php echo $billboard['id']; ?>" data-location_id="<?php echo $billboard['location_id']; ?>" data-size="<?php echo $billboard['size']; ?>" data-type="<?php echo $billboard['type']; ?>" data-mac_address="<?php echo $billboard['mac_address']; ?>" data-active="<?php echo $billboard['active']; ?>" data-minimum_vehicle_count="<?php echo $billboard['minimum_vehicle_count']?>" data-bs-toggle="modal" data-bs-target="#addBillboardModal" data-price_per_day="<?php echo $billboard['price_per_day']; ?>">Edit</button>
                         </td>
                     </tr>
                     </tr>

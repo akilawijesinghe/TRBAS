@@ -65,6 +65,7 @@ class MY_Controller extends CI_Controller
         $this->load->database();
         $this->db->where('email', $email);
         $this->db->where('deleted_at', NULL);
+        $this->db->where('active', 1);
         $query = $this->db->get('tbl_users');
 
         if ($query->num_rows() > 0) {
@@ -80,6 +81,7 @@ class MY_Controller extends CI_Controller
         $this->load->database();
         $this->db->where('location_name', $location_name);
         $this->db->where('deleted_at', NULL);
+        
         $query = $this->db->get('tbl_locations');
 
         if ($query->num_rows() > 0) {
