@@ -4,7 +4,7 @@ require_once 'application/libraries/class/Reporter.php';
 $pdf = new Reporter(array('orientation' => 'P', 'unit' => 'mm', 'format' => 'A4', 'footer' => false));
 $pdf->addPage();
 
-$pdf->writeTitle("Traffic Volume Report");
+$pdf->writeTitle("Ad Performance Report", 0, 'C');
 $pdf->writeSubTitle('From Date: ' . $from_date . ' To Date: ' . $to_date, 0, 'C');
 $pdf->Ln();
 

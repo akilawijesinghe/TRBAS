@@ -118,7 +118,7 @@
                     <div class="form-group row">
                         <label for="from_daterange" class="col-sm-2 col-form-label">Date Range</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="from_daterange" name="from_daterange" readonly>
+                            <input type="text" class="form-control" id="from_daterange" name="from_daterange" readonly disabled>
                         </div>
                     </div>
                     <div class="form-group row d-none">

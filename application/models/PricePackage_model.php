@@ -40,4 +40,13 @@ class PricePackage_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_pricepackage($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_price_packages');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 }

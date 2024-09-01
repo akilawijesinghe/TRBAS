@@ -16,7 +16,6 @@ class Booking extends MY_Controller
         $this->load->model('PricePackage_model');
         // check login
         $this->check_login();
-
     }
 
     public function index()
@@ -48,9 +47,23 @@ class Booking extends MY_Controller
             http_response_code(422);
             echo json_encode($this->form_validation->error_array());
         } else {
+            // calculate the total price
+            $price_package = $this->PricePackage_model->get_pricepackage($post_data['price_package_id']);
+            // get billboard price
+            $billboard = $this->Billboard_model->get_billboard($post_data['billboard_id']);
+            $price = $billboard['price_per_day'];
+
+            $from_date = new DateTime($post_data['from_date']);
+            $to_date = new DateTime($post_data['to_date']);
+            $discount = $price_package['discount'];
+            $diff = $from_date->diff($to_date);
+            $days = $diff->days;
+            $days = $days + 1;
+            $total_price = $price * $days;
+            $total_price = $total_price - ($total_price * $discount / 100);
+            $post_data['total_price'] = $total_price;
             // save the booking
             if (!empty($post_data['id']) && is_numeric($post_data['id'])) {
-                // Update booking
                 $id = $post_data['id'];
                 unset($post_data['id']);
                 $res = $this->Booking_model->update_booking($post_data, $id);
@@ -93,5 +106,4 @@ class Booking extends MY_Controller
         $dates = $this->Booking_model->get_booking_dates_of_billboard($billboard_id);
         echo json_encode($dates);
     }
-
 }
