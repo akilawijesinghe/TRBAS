@@ -108,6 +108,7 @@
                                             $selected = 'selected';
                                         }
                                     }
+                                    if ($customer['active'] != 1) continue;
                                 ?>
                                     <option <?php echo $selected; ?> value="<?php echo $customer['customer_id']; ?>"><?php echo $customer['name']; ?></option>
                                 <?php endforeach; ?>
