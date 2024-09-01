@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Admin_dashboard extends MY_Controller
 {
@@ -19,8 +19,24 @@ class Admin_dashboard extends MY_Controller
         $data['title'] = 'Admin Dashboard';
         $data['billboards'] = $this->Dashboard_model->get_billboards_stats();
         $data['customers'] = $this->Dashboard_model->get_customers();
-        $data['billboards'] = array();
-        $data['customers'] = array();
         $this->_render_view('template/admin/dashboard', $data);
+    }
+
+    public function send_mail()
+    {
+        $this->load->library('email');
+        $this->email->from('minolijayasinghe99@gmail.com', 'Your Name');
+        $this->email->to('akilawijesinghe94@gmail.com');
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class using local SMTP.');
+
+        // Send the email
+        if ($this->email->send()) {
+            echo 'Email sent successfully.';
+        } else {
+            echo 'Email failed to send.';
+            echo $this->email->print_debugger();
+        }
     }
 }
