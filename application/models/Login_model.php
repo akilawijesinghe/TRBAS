@@ -20,18 +20,21 @@ class Login_model extends CI_Model
         return $query->row_array();
     }
 
-    // register_customer
     public function register($data)
     {
 
         $this->db->select('*');
         $this->db->from('tbl_users');
         $this->db->where('email', $data['email']);
+        $this->db->where('deleted_at', NULL);
+        $this->db->where('active', 0);
         $query = $this->db->get();
         $user = $query->row_array();
 
         if ($user) {
-            return false;
+            $this->db->where('id', $user['id']);
+            $this->db->update('tbl_users', $data);
+            return $user['id'];
         }
 
         $this->db->insert('tbl_users', $data);
