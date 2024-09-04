@@ -9,6 +9,7 @@ if ($role == 'admin') {
 }
 
 $uri = $this->uri->segment(1);
+$sub_uri = $this->uri->segment(2);
 ?>
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
@@ -52,33 +53,21 @@ $uri = $this->uri->segment(1);
                         <p>My Ads</p>
                     </a>
                 </li>
-                <!-- Reports -->
-                <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
-                    <a href="<?php echo base_url(); ?>report" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
-                        <p>Reports</p>
-                    </a>
-                </li>
                 <li class="nav-item <?php if ($uri == 'report') echo 'active'; ?>">
                     <a data-bs-toggle="collapse" href="#reports">
                         <i class="fas fa-chart-line"></i>
                         <p>Reports</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="reports">
+                    <div class="collapse <?php if ($uri == 'report') echo 'show'; ?>" id="reports">
                         <ul class="nav nav-collapse">
-                            <li>
-                                <a href="components/avatars.html">
+                            <li class="<?php if ($sub_uri == 'customer_ad_exposure_report') echo 'active'; ?>">
+                                <a href="<?php echo base_url();?>report/customer_ad_exposure_report">
                                     <span class="sub-item">Ad Exposure</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="components/buttons.html">
-                                    <span class="sub-item">Campaign Summary</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/buttons.html">
+                            <li class="<?php if ($sub_uri == 'customer_ad_scheduling_report') echo 'active'; ?>">
+                                <a href="<?php echo base_url();?>report/customer_ad_scheduling_report">
                                     <span class="sub-item">Ad Scheduling</span>
                                 </a>
                             </li>

@@ -85,4 +85,42 @@ class Report extends MY_Controller
             $this->_render_view('report/date_range', $data);
         }
     }
+    // customer_ad_exposure_report
+    public function customer_ad_exposure_report()
+    {
+        // check is this customer
+        if ($this->session->userdata('user_role') != 'customer') {
+            redirect('login'); // Redirect to login if not an admin
+        }
+
+        $data = array();
+
+        if ($this->input->post()) {
+            $from_date = $this->input->post('from_date');
+            $to_date = $this->input->post('to_date');
+            $data['from_date'] = $from_date;
+            $data['to_date'] = $to_date;
+            $data['data'] = $this->Report_model->get_customer_ad_exposure($from_date, $to_date);
+            $data['customer'] = $this->session->userdata('user_name');
+            $this->load->view('report/pdf/customer_ad_exposure_report', $data);
+        } else {
+            $data['title'] = "Ad Exposure Report";
+            $data['action'] = "report/customer_ad_exposure_report";
+            $this->_render_view('report/date_range', $data);
+        }
+    }
+
+    //customer_ad_scheduling_report
+    public function customer_ad_scheduling_report()
+    {
+        // check is this customer
+        if ($this->session->userdata('user_role') != 'customer') {
+            redirect('login'); // Redirect to login if not an customer
+        }
+
+        $data = array();
+        $data['customer'] = $this->session->userdata('user_name');
+        $data['data'] = $this->Report_model->get_customer_ad_scheduling();
+        $this->load->view('report/pdf/customer_ad_scheduling', $data);
+    }
 }
