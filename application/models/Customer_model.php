@@ -79,7 +79,7 @@ class Customer_model extends CI_Model
         $this->db->join('tbl_role', 'tbl_role.id = tbl_user_role.role_id', 'left');
         $this->db->where('tbl_role.role_name', 'customer');
         $this->db->where('tbl_users.deleted_at', NULL);
-        // if user is customer show only his details
+        $this->db->group_by('tbl_users.id');
         if ($this->session->userdata('user_role') == 'customer') {
             $this->db->where('tbl_users.id', $this->session->userdata('user_id'));
         }

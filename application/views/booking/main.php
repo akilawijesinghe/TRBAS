@@ -108,6 +108,7 @@
                                             $selected = 'selected';
                                         }
                                     }
+                                    if ($customer['active'] != 1) continue;
                                 ?>
                                     <option <?php echo $selected; ?> value="<?php echo $customer['customer_id']; ?>"><?php echo $customer['name']; ?></option>
                                 <?php endforeach; ?>
@@ -117,7 +118,7 @@
                     <div class="form-group row">
                         <label for="from_daterange" class="col-sm-2 col-form-label">Date Range</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="from_daterange" name="from_daterange" readonly>
+                            <input type="text" class="form-control" id="from_daterange" name="from_daterange" readonly disabled>
                         </div>
                     </div>
                     <div class="form-group row d-none">

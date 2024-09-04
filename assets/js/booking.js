@@ -55,6 +55,18 @@ $(document).ready(function () {
 			});
 	});
 
+	// billing_id change event display_total
+	$("#billboard_id").change(function () {
+		$("#from_daterange").prop("disabled", false);
+
+		// if date range is not empty
+		if ($("#from_daterange").val() != "") {
+			var start_date = moment($("#from_date").val());
+			var end_date = moment($("#to_date").val());
+			display_total(start_date, end_date, "Custom");
+		}
+	});
+
 	$("#addBookingModal").on("show.bs.modal", function (e) {
 		//clear from_daterange input field
 		$("#from_daterange").data("daterangepicker").setStartDate(moment());
@@ -208,7 +220,9 @@ $(document).ready(function () {
 		}
 
 		// get seleted billborad data-price variable
-		var billboard_price = $("#billboard_id option:selected").data("price_per_day");
+		var billboard_price = $("#billboard_id option:selected").data(
+			"price_per_day"
+		);
 
 		if (selectedOption) {
 			selectedOption.prop("selected", true);
@@ -303,25 +317,30 @@ function get_booking_dates_of_billboard(billboard_id) {
 		});
 }
 
- // Function to disable booked dates
- function disable_dates(dates) {
-    var picker = $("#from_daterange").data("daterangepicker");
+// Function to disable booked dates
+function disable_dates(dates) {
+	var picker = $("#from_daterange").data("daterangepicker");
 
-    // Update the isInvalidDate function of the existing date range picker instance
-    picker.isInvalidDate = function (date) {
-        var formattedDate = date.format("YYYY-MM-DD");
-        for (var i = 0; i < dates.length; i++) {
-            var fromDate = moment(dates[i].from_date);
-            var toDate = moment(dates[i].to_date);
+	//add one day to the end date
+	dates.forEach(function (date) {
+		date.to_date = moment(date.to_date).add(1, "days").format("YYYY-MM-DD");
+	});
 
-            // If the date falls within any of the ranges, return true (invalid)
-            if (date.isBetween(fromDate, toDate, null, '[]')) {
-                return true;
-            }
-        }
-        return false; // Otherwise, the date is valid
-    };
+	// Update the isInvalidDate function of the existing date range picker instance
+	picker.isInvalidDate = function (date) {
+		var formattedDate = date.format("YYYY-MM-DD");
+		for (var i = 0; i < dates.length; i++) {
+			var fromDate = moment(dates[i].from_date);
+			var toDate = moment(dates[i].to_date);
 
-    // Manually trigger the picker to re-render with the new invalid dates
-    picker.updateView();
+			// If the date falls within any of the ranges, return true (invalid)
+			if (date.isBetween(fromDate, toDate, null, "[]")) {
+				return true;
+			}
+		}
+		return false; // Otherwise, the date is valid
+	};
+
+	// Manually trigger the picker to re-render with the new invalid dates
+	picker.updateView();
 }
