@@ -110,51 +110,17 @@ class Report extends MY_Controller
         }
     }
 
-    // customer_campaign_summary_report
-    public function customer_campaign_summary_report()
-    {
-        // check is this customer
-        if ($this->session->userdata('user_role') != 'customer') {
-            redirect('login'); // Redirect to login if not an admin
-        }
-
-        $data = array();
-
-        if ($this->input->post()) {
-            $from_date = $this->input->post('from_date');
-            $to_date = $this->input->post('to_date');
-            $data['from_date'] = $from_date;
-            $data['to_date'] = $to_date;
-            $data['data'] = $this->Report_model->get_customer_campaign_summary($from_date, $to_date);
-            $this->load->view('report/pdf/campaign_summary', $data);
-        } else {
-            $data['title'] = "Campaign Summary Report";
-            $data['action'] = "report/campaign_summary_report";
-            $this->_render_view('report/date_range', $data);
-        }
-    }
-
     //customer_ad_scheduling_report
     public function customer_ad_scheduling_report()
     {
         // check is this customer
         if ($this->session->userdata('user_role') != 'customer') {
-            redirect('login'); // Redirect to login if not an admin
+            redirect('login'); // Redirect to login if not an customer
         }
 
         $data = array();
-
-        if ($this->input->post()) {
-            $from_date = $this->input->post('from_date');
-            $to_date = $this->input->post('to_date');
-            $data['from_date'] = $from_date;
-            $data['to_date'] = $to_date;
-            $data['data'] = $this->Report_model->get_customer_ad_scheduling($from_date, $to_date);
-            $this->load->view('report/pdf/ad_scheduling', $data);
-        } else {
-            $data['title'] = "Ad Scheduling Report";
-            $data['action'] = "report/ad_scheduling_report";
-            $this->_render_view('report/date_range', $data);
-        }
+        $data['customer'] = $this->session->userdata('user_name');
+        $data['data'] = $this->Report_model->get_customer_ad_scheduling();
+        $this->load->view('report/pdf/customer_ad_scheduling', $data);
     }
 }

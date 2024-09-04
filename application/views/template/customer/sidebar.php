@@ -66,11 +66,6 @@ $sub_uri = $this->uri->segment(2);
                                     <span class="sub-item">Ad Exposure</span>
                                 </a>
                             </li>
-                            <li class="<?php if ($sub_uri == 'customer_campaign_summary_report') echo 'active'; ?>">
-                                <a href="<?php echo base_url();?>report/customer_campaign_summary_report">
-                                    <span class="sub-item">Campaign Summary</span>
-                                </a>
-                            </li>
                             <li class="<?php if ($sub_uri == 'customer_ad_scheduling_report') echo 'active'; ?>">
                                 <a href="<?php echo base_url();?>report/customer_ad_scheduling_report">
                                     <span class="sub-item">Ad Scheduling</span>

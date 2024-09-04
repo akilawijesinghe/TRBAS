@@ -85,4 +85,21 @@ class Report_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    // get_customer_ad_scheduling for logged in customer only
+    public function get_customer_ad_scheduling()
+    {
+        $this->db->select('GROUP_CONCAT(tbl_advertisements.video_link) as ad_info, tbl_booking.*, tbl_locations.location_name, tbl_billboards.id as billboard_id');
+        $this->db->from('tbl_booking');
+        $this->db->join('tbl_billboards', 'tbl_booking.billboard_id = tbl_billboards.id', 'inner');
+        $this->db->join('tbl_customer_details', 'tbl_booking.customer_id = tbl_customer_details.id', 'inner');
+        $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id AND tbl_users.id = ' . $this->session->userdata('user_id'), 'inner');
+        $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'left');
+        $this->db->join('tbl_advertisements', 'tbl_booking.id = tbl_advertisements.booking_id', 'left');
+        $this->db->group_by('tbl_booking.id');
+
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
 }
