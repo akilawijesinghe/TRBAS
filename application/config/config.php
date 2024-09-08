@@ -532,3 +532,5 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 $config['upload_path'] = 'uploads/';
+
+$config['stripe_secret_key'] = "sk_test_51Pwhk9FDJLERu99vsJVsnMtISwacD5c35fuhqEeM17ToRw3MlKMt4qYQL2Mg9VmyyYyAj5E6YAP7aleNW6FqsQ2900WM7SCTta";

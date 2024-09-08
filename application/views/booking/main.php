@@ -1,3 +1,11 @@
+<?php
+
+// check flash data and display the message
+if ($this->session->flashdata('success')) {
+    echo '<div class="alert alert-success">' . $this->session->flashdata('success') . '</div>';
+}
+
+?>
 <div class="row">
     <div class="col-md-12">
         <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addBookingModal">Add Booking</button>
@@ -83,7 +91,7 @@
                 <h4 class="modal-title">Add Booking</h4>
                 <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
             </div>
-            <form id="booking_form">
+            <form id="booking_form" action="<?php echo base_url('booking/process_payment'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="location" class="col-sm-2 col-form-label">Billboard</label>
@@ -132,7 +140,7 @@
                     <div class="form-group row">
                         <label for="price_package_id" class="col-sm-2 col-form-label">Price</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="price_package_id" name="price_package_id" disabled>
+                            <select class="form-select" id="price_package_id" name="price_package_id" readonly disabled>
                                 <option value="">Select date range first</option>
                                 <?php foreach ($price_packages as $price_package) : ?>
                                     <option data-discount="<?php echo $price_package['discount']; ?>" data-duration="<?php echo $price_package['duration']; ?>" value="<?php echo $price_package['id']; ?>"><?php echo $price_package['package_name']; ?></option>
@@ -158,10 +166,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="save_booking">Save changes</button>
+                    <button type="submit" class="btn btn-primary" id="save_booking" style="display: none;">Save changes</button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
@@ -187,5 +194,7 @@
         </div>
     </div>
 </div>
+<style>
 
+</style>
 <script src="<?php echo base_url(); ?>assets/js/booking.js"></script>
