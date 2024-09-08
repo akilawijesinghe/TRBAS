@@ -1,6 +1,8 @@
 $(document).ready(function () {
+
 	// save_booking button click and form submit
 	$("#save_booking").click(function () {
+		return;
 		// remove all error messages
 		$(".error-message").remove();
 
@@ -291,6 +293,9 @@ $(document).ready(function () {
 </div>
 		 
 		 `);
+
+		// display submit button
+		$("#save_booking").css("display", "block");
 	}
 
 	// billboard_id change event to get booking dates
@@ -298,6 +303,7 @@ $(document).ready(function () {
 		var billboard_id = $(this).val();
 		var dates = get_booking_dates_of_billboard(billboard_id);
 	});
+
 });
 
 function get_booking_dates_of_billboard(billboard_id) {

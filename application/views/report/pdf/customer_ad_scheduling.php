@@ -9,11 +9,11 @@ $pdf->writeSubTitle('', 0, 'C');
 
 $pdf->Ln();
 
-$pdf->SetWidths(array($pdf->getAsPercentage(4),$pdf->getAsPercentage(10), $pdf->getAsPercentage(20), $pdf->getAsPercentage(20), $pdf->getAsPercentage(35), $pdf->getAsPercentage(10)));
+$pdf->SetWidths(array($pdf->getAsPercentage(4), $pdf->getAsPercentage(10), $pdf->getAsPercentage(20), $pdf->getAsPercentage(20), $pdf->getAsPercentage(35), $pdf->getAsPercentage(10)));
 $pdf->Ln();
 $x = 0;
 
-$pdf->Row(array('#', 'Booking ID','Billboard', 'From and To Date', 'Ad Videos', 'Status'), true);
+$pdf->Row(array('#', 'Booking ID', 'Billboard', 'From and To Date', 'Ad Videos', 'Status'), true);
 $x += 1;
 foreach ($data as $key => $value) {
 
@@ -29,17 +29,21 @@ foreach ($data as $key => $value) {
     }
 
     $date_range = $from_date . ' to ' . $to_date;
-    $billboard_data = "ID : ".$value->billboard_id . "\n" . $value->location_name;
+    $billboard_data = "ID : " . $value->billboard_id . "\n" . $value->location_name;
 
-    $ad_info = explode(',', $value->ad_info);
-    $value->ad_info = '';
+    $ad_info = $value->ad_info;
+    $new_ad_info = '';
 
-    foreach ($ad_info as $key => $ad) {
-        $value->ad_info .= $ad . "\n";
+    if (!empty($value->ad_info)) {
+        $ad_info = explode(',', $value->ad_info);
+        foreach ($ad_info as $key => $ad) {
+            $new_ad_info .= $ad . "\n";
+        }
+    } else {
+        $new_ad_info = '';
     }
 
-
-    $pdf->Row(array($x, $value->id, $billboard_data, $date_range, $value->ad_info, $status));
+    $pdf->Row(array($x, $value->id, $billboard_data, $date_range, $new_ad_info, $status));
     $x += 1;
 }
 
