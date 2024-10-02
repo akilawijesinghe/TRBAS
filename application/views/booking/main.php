@@ -36,7 +36,6 @@ if ($this->session->flashdata('success')) {
                             $from_date = strtotime(date('Y-m-d', strtotime($booking['from_date'])));
                             $to_date = strtotime(date('Y-m-d', strtotime($booking['to_date'])));
                             $current_date = strtotime(date('Y-m-d'));
-                            print_r(date('Y-m-d'));
 
                             if ($current_date < $from_date) {
                                 // Future date, event has not started yet

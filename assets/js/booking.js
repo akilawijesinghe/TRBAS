@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
 	// save_booking button click and form submit
 	$("#edit_booking").click(function () {
 		// remove all error messages
@@ -66,10 +65,29 @@ $(document).ready(function () {
 			var end_date = moment($("#to_date").val());
 			display_total(start_date, end_date, "Custom");
 		}
+
+		// check id is not empty
+		booking_id = $("#addBookingModal").data("id");
+
+		if (booking_id) {
+			// hide save_booking button
+			$("#save_booking").css("display", "none");
+			// show edit_booking button
+			$("#edit_booking").css("display", "block");
+		} else {
+			if ($("#from_daterange").val() != "") {
+				// display save_booking button
+				$("#save_booking").css("display", "block");
+			} else {
+				// hide save_booking button
+				$("#save_booking").css("display", "none");
+			}
+			// hide edit_booking button
+			$("#edit_booking").css("display", "none");
+		}
 	});
 
 	$("#addBookingModal").on("show.bs.modal", function (e) {
-
 		//clear from_daterange input field
 		$("#from_daterange").data("daterangepicker").setStartDate(moment());
 		$("#from_daterange").data("daterangepicker").setEndDate(moment());
@@ -302,6 +320,26 @@ $(document).ready(function () {
 
 		// display submit button
 		$("#save_booking").css("display", "block");
+
+		// check id is not empty
+		booking_id = $("#addBookingModal").data("id");
+
+		if (booking_id) {
+			// hide save_booking button
+			$("#save_booking").css("display", "none");
+			// show edit_booking button
+			$("#edit_booking").css("display", "block");
+		} else {
+			if ($("#from_daterange").val() != "") {
+				// display save_booking button
+				$("#save_booking").css("display", "block");
+			} else {
+				// hide save_booking button
+				$("#save_booking").css("display", "none");
+			}
+			// hide edit_booking button
+			$("#edit_booking").css("display", "none");
+		}
 	}
 
 	// billboard_id change event to get booking dates
@@ -309,7 +347,6 @@ $(document).ready(function () {
 		var billboard_id = $(this).val();
 		var dates = get_booking_dates_of_billboard(billboard_id);
 	});
-
 });
 
 function get_booking_dates_of_billboard(billboard_id) {
