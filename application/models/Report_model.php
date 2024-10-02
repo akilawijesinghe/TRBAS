@@ -82,6 +82,8 @@ class Report_model extends CI_Model
         $this->db->join('tbl_customer_details', 'tbl_customer_details.id = tbl_booking.customer_id', 'left');
         $this->db->join('tbl_users', 'tbl_users.id = tbl_customer_details.user_id AND tbl_users.id = ' . $this->session->userdata('user_id'), 'left');
         $this->db->group_by('tbl_advertisements.id');
+        $this->db->where('tbl_users.id', $this->session->userdata('user_id'));
+
         $query = $this->db->get();
         return $query->result();
     }
@@ -97,6 +99,7 @@ class Report_model extends CI_Model
         $this->db->join('tbl_locations', 'tbl_locations.id = tbl_billboards.location_id', 'left');
         $this->db->join('tbl_advertisements', 'tbl_booking.id = tbl_advertisements.booking_id', 'left');
         $this->db->group_by('tbl_booking.id');
+        $this->db->where('tbl_users.id', $this->session->userdata('user_id'));
 
         $query = $this->db->get();
         $result = $query->result();
