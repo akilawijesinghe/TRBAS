@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
 	// save_booking button click and form submit
-	$("#save_booking").click(function () {
-		return;
+	$("#edit_booking").click(function () {
 		// remove all error messages
 		$(".error-message").remove();
 
@@ -70,6 +69,7 @@ $(document).ready(function () {
 	});
 
 	$("#addBookingModal").on("show.bs.modal", function (e) {
+
 		//clear from_daterange input field
 		$("#from_daterange").data("daterangepicker").setStartDate(moment());
 		$("#from_daterange").data("daterangepicker").setEndDate(moment());
@@ -85,6 +85,8 @@ $(document).ready(function () {
 		$("#addBookingModal").removeData();
 		// add all data attributes to the modal
 		$("#addBookingModal").data(data);
+
+		console.log(data);
 
 		// Populate other fields with data
 		$.each(data, function (index, val) {
@@ -106,6 +108,10 @@ $(document).ready(function () {
 				start_date.format("MM/DD/YYYY") + " - " + end_date.format("MM/DD/YYYY")
 			);
 			display_total(start_date, end_date, "Custom");
+			// hide save_booking button
+			$("#save_booking").css("display", "none");
+			// show edit_booking button
+			$("#edit_booking").css("display", "block");
 		}
 	});
 

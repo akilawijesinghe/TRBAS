@@ -12,3 +12,17 @@
 	font-size: 0.8em!important;
 	color: #0000006e;
 }
+
+.card.card-secondary.bg-secondary-gradient {
+    height: 82%;
+}
+
+button.btn.btn-primary.editBillboard {
+    width: 75%;
+    margin-top: 2px;
+}
+
+button.btn.btn-primary.editcustomer {
+    width: 90%;
+    margin-top: 2px;
+}

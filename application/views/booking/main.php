@@ -168,6 +168,7 @@ if ($this->session->flashdata('success')) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="save_booking" style="display: none;">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="edit_booking" style="display: none;">Edit changes</button>
                 </div>
             </form>
         </div>
