@@ -25,6 +25,7 @@
 			<div class="collapse navbar-collapse" id="responsive_nav">
 				<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
 					<li class="nav-item"><a class="nav-link" href="#billboard">billboard</a></li>
+					<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>assets/CQUTRBASUserManual.pdf" target="_blank">User Manual</a></li>
 					<?php
 
 					if ($this->session->userdata('user_id')) {
